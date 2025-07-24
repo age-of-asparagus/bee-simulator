@@ -1,0 +1,135 @@
+[gd_scene load_steps=9 format=3 uid="uid://dph70e6ykro5s"]
+
+[ext_resource type="Shader" uid="uid://bmn4bpfkvxsmg" path="res://CameraTests/ShaderTests/fish_eye.gdshader" id="1_etffa"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_etffa"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_6d05o"]
+sky_material = SubResource("ProceduralSkyMaterial_etffa")
+
+[sub_resource type="Environment" id="Environment_jrmab"]
+background_mode = 2
+sky = SubResource("Sky_6d05o")
+tonemap_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_ay46f"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2yrja"]
+shader = ExtResource("1_etffa")
+shader_parameter/distortion_strength = 1.0
+shader_parameter/projection_mode = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_etffa"]
+shader = ExtResource("1_etffa")
+shader_parameter/distortion_strength = 0.765
+shader_parameter/projection_mode = 3
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_6d05o"]
+viewport_path = NodePath("SubViewport")
+
+[node name="CameraTests" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jrmab")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.36205, 6.02479, 5.20781)
+visible = false
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_ay46f")
+skeleton = NodePath("../SubViewport/3DContent/Camera3D")
+surface_material_override/0 = SubResource("ShaderMaterial_2yrja")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_etffa")
+offset_right = 1280.0
+offset_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("ViewportTexture_6d05o")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(3840, 2160)
+render_target_update_mode = 4
+
+[node name="3DContent" type="Node" parent="SubViewport"]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/3DContent"]
+transform = Transform3D(-0.0113055, -0.385042, 0.92283, 0, 0.922889, 0.385067, -0.999936, 0.00435337, -0.0104337, 8.84865, 7.63711, 3.10935)
+current = true
+fov = 144.1
+
+[node name="WorldObjects" type="Node3D" parent="SubViewport/3DContent"]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="SubViewport/3DContent/WorldObjects"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -1, 0, -1.21798)
+size = Vector3(7, 1, 2)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="SubViewport/3DContent/WorldObjects"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -27.3344, 0, -12.1455)
+size = Vector3(7, 1, 2)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="SubViewport/3DContent/WorldObjects"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -19.679, 0, 5.33028)
+size = Vector3(7, 1, 2)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="SubViewport/3DContent/WorldObjects"]
+transform = Transform3D(-3.09086e-08, -3.09086e-08, -1, -0.707107, 0.707107, 0, 0.707107, 0.707107, -4.37114e-08, -4.4865, 0, 4.63548)
+size = Vector3(7, 1, 2)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="SubViewport/3DContent/WorldObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 1, 8)
+radius = 3.0
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="SubViewport/3DContent/WorldObjects"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -11.5906, 1, -2)
+radius = 1.39795
+height = 8.81885
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="SubViewport/3DContent/WorldObjects"]
+transform = Transform3D(-0.866025, -0.5, 0, 0.5, -0.866025, 0, 0, 0, 1, -18.1832, 0.999999, 15.168)
+radius = 1.39795
+height = 8.81885
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="SubViewport/3DContent/WorldObjects"]
+transform = Transform3D(0.224144, 0.12941, -0.965926, 0.5, -0.866025, 0, -0.836516, -0.482963, -0.258819, -11.5343, 1, -8.24511)
+radius = 1.39795
+height = 8.81885
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="SubViewport/3DContent/WorldObjects"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -12.7879, 7.97819, 0.49143)
+inner_radius = 1.69619
+outer_radius = 2.81954
+
+[node name="CSGTorus3D2" type="CSGTorus3D" parent="SubViewport/3DContent/WorldObjects"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, -0.0416002, 1.13119, 8.95631)
+inner_radius = 1.69619
+outer_radius = 2.81954
+
+[node name="WorldBoundaries" type="Node3D" parent="SubViewport/3DContent"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SubViewport/3DContent/WorldBoundaries"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.7879, 0, 3.43683)
+size = Vector3(35.7152, 1, 34.4742)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="SubViewport/3DContent/WorldBoundaries"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -12.588, 10.2306, -13.718)
+size = Vector3(25.7939, 36.8406, 1)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="SubViewport/3DContent/WorldBoundaries"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -12.588, 5.09121, 20.9456)
+size = Vector3(25.7939, 36.8406, 1)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="SubViewport/3DContent/WorldBoundaries"]
+transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, -27.8457, 5.09121, 3.19989)
+size = Vector3(25.7939, 36.8406, 1)
