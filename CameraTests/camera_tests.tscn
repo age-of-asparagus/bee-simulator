@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dph70e6ykro5s"]
+[gd_scene load_steps=10 format=3 uid="uid://dph70e6ykro5s"]
 
 [ext_resource type="Shader" uid="uid://bmn4bpfkvxsmg" path="res://CameraTests/ShaderTests/fish_eye.gdshader" id="1_etffa"]
+[ext_resource type="PackedScene" uid="uid://ydmombs4jus8" path="res://bee.tscn" id="2_6d05o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_etffa"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -22,11 +23,13 @@ size = Vector2(2, 2)
 shader = ExtResource("1_etffa")
 shader_parameter/distortion_strength = 1.0
 shader_parameter/projection_mode = 1
+shader_parameter/fov_degrees = 120.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_etffa"]
 shader = ExtResource("1_etffa")
-shader_parameter/distortion_strength = 0.765
+shader_parameter/distortion_strength = 0.69
 shader_parameter/projection_mode = 3
+shader_parameter/fov_degrees = 120.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_6d05o"]
 viewport_path = NodePath("SubViewport")
@@ -45,7 +48,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.3620
 visible = false
 extra_cull_margin = 16384.0
 mesh = SubResource("QuadMesh_ay46f")
-skeleton = NodePath("../SubViewport/3DContent/Camera3D")
+skeleton = NodePath("../SubViewport/3DContent/Bee/Camera3D")
 surface_material_override/0 = SubResource("ShaderMaterial_2yrja")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -64,10 +67,13 @@ render_target_update_mode = 4
 
 [node name="3DContent" type="Node" parent="SubViewport"]
 
-[node name="Camera3D" type="Camera3D" parent="SubViewport/3DContent"]
-transform = Transform3D(-0.0113055, -0.385042, 0.92283, 0, 0.922889, 0.385067, -0.999936, 0.00435337, -0.0104337, 8.84865, 7.63711, 3.10935)
+[node name="Bee" parent="SubViewport/3DContent" instance=ExtResource("2_6d05o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.90959, 0)
+metadata/_edit_group_ = true
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport/3DContent/Bee"]
 current = true
-fov = 144.1
+fov = 120.0
 
 [node name="WorldObjects" type="Node3D" parent="SubViewport/3DContent"]
 
@@ -133,3 +139,5 @@ size = Vector3(25.7939, 36.8406, 1)
 [node name="CSGBox3D8" type="CSGBox3D" parent="SubViewport/3DContent/WorldBoundaries"]
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, -27.8457, 5.09121, 3.19989)
 size = Vector3(25.7939, 36.8406, 1)
+
+[editable path="SubViewport/3DContent/Bee"]
