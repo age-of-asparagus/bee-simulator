@@ -10,6 +10,7 @@ forward_acceleration = 7.5
 max_speed = 15.0
 drag = 10.0
 turn_speed = 1.0
+smooth_time = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_oa0v6")

@@ -4,7 +4,7 @@ extends CharacterBody3D
 @export var max_speed : float
 @export var drag : float
 @export var turn_speed : float
-
+@export var smooth_time : float
 
 var vertical_rotation = 0
 var horizontal_rotation = 0
@@ -12,7 +12,7 @@ var horizontal_rotation = 0
 var target_vertical_rotation = 0
 var target_horizontal_rotation = 0
 
-var smooth_time = 2
+
 
 func _physics_process(delta):
 	
