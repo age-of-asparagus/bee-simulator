@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ydmombs4jus8"]
+
+[ext_resource type="Script" uid="uid://dblbge14rfbxn" path="res://bee.gd" id="1_xww1r"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oa0v6"]
+
+[node name="Bee" type="CharacterBody3D"]
+script = ExtResource("1_xww1r")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_oa0v6")
