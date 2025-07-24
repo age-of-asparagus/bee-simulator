@@ -1,6 +1,20 @@
-[gd_scene format=3 uid="uid://dph70e6ykro5s"]
+[gd_scene load_steps=4 format=3 uid="uid://dph70e6ykro5s"]
+
+[ext_resource type="Shader" uid="uid://bkswlewde2sfh" path="res://camera_tests.gdshader" id="1_dubce"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_ay46f"]
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2yrja"]
+render_priority = 0
+shader = ExtResource("1_dubce")
 
 [node name="CameraTests" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.0113055, -0.385042, 0.92283, 0, 0.922889, 0.385067, -0.999936, 0.00435337, -0.0104337, 8.84865, 7.63711, 3.10935)
+fov = 79.0
 
 [node name="WorldObjects" type="Node3D" parent="."]
 
@@ -67,6 +81,9 @@ size = Vector3(25.7939, 36.8406, 1)
 transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.37114e-08, 1, -4.37114e-08, -27.8457, 5.09121, 3.19989)
 size = Vector3(25.7939, 36.8406, 1)
 
-[node name="Camera3D" type="Camera3D" parent="WorldBoundaries"]
-transform = Transform3D(-0.0113055, -0.385042, 0.92283, 0, 0.922889, 0.385067, -0.999936, 0.00435337, -0.0104337, 8.84865, 7.63711, 3.10935)
-fov = 65.6618
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.36205, 6.02479, 5.20781)
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_ay46f")
+skeleton = NodePath("../Camera3D")
+surface_material_override/0 = SubResource("ShaderMaterial_2yrja")
