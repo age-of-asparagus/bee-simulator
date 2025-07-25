@@ -3,7 +3,8 @@ extends Node3D
 
 func _physics_process(delta):
 	
-	if bee_detected()
+	if bee_detected():
+		pass
 	
 	
 

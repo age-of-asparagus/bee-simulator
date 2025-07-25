@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4dx4ahu28ccd"]
+[gd_scene load_steps=6 format=3 uid="uid://b4dx4ahu28ccd"]
 
 [ext_resource type="PackedScene" uid="uid://ydmombs4jus8" path="res://bee.tscn" id="1_ng8dw"]
 
@@ -13,6 +13,9 @@ sky_material = SubResource("ProceduralSkyMaterial_ng8dw")
 background_mode = 2
 sky = SubResource("Sky_m6ju2")
 tonemap_mode = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v5qog"]
+size = Vector3(1.1, 1.1, 1.1)
 
 [node name="CameraTests" type="Node3D"]
 
@@ -90,6 +93,10 @@ size = Vector3(25.7939, 36.8406, 1)
 
 [node name="Bee" parent="." instance=ExtResource("1_ng8dw")]
 transform = Transform3D(-1, -6.69697e-08, 5.61943e-08, 0, 0.642788, 0.766044, -8.74228e-08, 0.766044, -0.642788, 0.158626, 4.98296, -0.0129799)
+
+[node name="CollisionShape3D" parent="Bee/crash_detector" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_v5qog")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Bee"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0, 0)

@@ -50,7 +50,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.55951, 0.257324, 4.01031)
 shape = SubResource("BoxShape3D_aqk2v")
 
 [node name="Bee" parent="." instance=ExtResource("3_tlwt5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.65951, 0)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 10, 0)
 
 [node name="FancyCameraSetup" parent="." node_paths=PackedStringArray("attach_camera_to") instance=ExtResource("1_tlwt5")]
 attach_camera_to = NodePath("../Bee")

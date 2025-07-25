@@ -15,4 +15,5 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	if attach_camera_to:
-		camera.global_transform = attach_camera_to.global_transform
+		camera.global_position = attach_camera_to.global_position
+		camera.global_basis = attach_camera_to.global_basis
