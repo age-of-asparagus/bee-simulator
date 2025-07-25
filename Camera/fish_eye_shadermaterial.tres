@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bd4puhy8f7dtk"]
 
-[ext_resource type="Shader" path="res://Camera/fish_eye_hex.gdshader" id="1_8vjul"]
+[ext_resource type="Shader" uid="uid://cq8kdjdfhkhe5" path="res://Camera/fish_eye_hex.gdshader" id="1_8vjul"]
 
 [resource]
 shader = ExtResource("1_8vjul")
