@@ -7,6 +7,6 @@ shader = ExtResource("1_8vjul")
 shader_parameter/pixel_scale = 100.0
 shader_parameter/aspect_ratio = 1.77778
 shader_parameter/outline_thickness = 0.002
-shader_parameter/distortion_strength = 0.25
+shader_parameter/distortion_strength = 0.2
 shader_parameter/projection_mode = 1
 shader_parameter/fov_degrees = 180.0
