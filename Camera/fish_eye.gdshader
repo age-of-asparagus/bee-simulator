@@ -12,7 +12,7 @@ void fragment() {
 
 	vec2 distorted_uv = uv;
 	float r_fisheye = r;
-	
+
 	if (projection_mode != 0) {
 		float theta = r_norm * radians(fov_degrees);
 
