@@ -5,15 +5,17 @@ extends CharacterBody3D
 @export var drag_coefficient : float
 @export var turn_speed : float
 @export var smooth_time : float
+@export var roll_smooth_time : float
+@export var max_roll : float
 
-@onready var starting_vertical_rotation = rotation
-@onready var starting_horizontal_rotation = rotation
 
 @onready var vertical_rotation = rotation.x
 @onready var horizontal_rotation = rotation.y
+@onready var roll_rotation = rotation.z
 
 @onready var target_vertical_rotation = rotation.x
 @onready var target_horizontal_rotation = rotation.y
+@onready var target_roll_rotation = rotation.z
 
 
 
@@ -30,11 +32,14 @@ func _physics_process(delta):
 func apply_rotation(delta : float):
 	target_vertical_rotation += get_input_vertical_rotation() * turn_speed * delta
 	target_horizontal_rotation += get_input_horizontal_rotation() * turn_speed * delta
+	target_roll_rotation = get_input_horizontal_rotation() * max_roll * delta
 	
 	vertical_rotation = lerp_angle(vertical_rotation, target_vertical_rotation, smooth_time * delta)
 	horizontal_rotation = lerp_angle(horizontal_rotation, target_horizontal_rotation, smooth_time * delta)
+	roll_rotation = lerp_angle(roll_rotation, target_roll_rotation, roll_smooth_time * delta)
 	
-	rotation = Vector3(vertical_rotation, horizontal_rotation, 0)
+	
+	rotation = Vector3(vertical_rotation, horizontal_rotation, roll_rotation)
 
 func apply_boost(delta : float):
 	if Input.is_action_pressed("Boost"):

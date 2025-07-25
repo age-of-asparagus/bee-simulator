@@ -6,11 +6,13 @@
 
 [node name="Bee" type="CharacterBody3D"]
 script = ExtResource("1_xww1r")
-boost_acceleration = 5.0
-forward_acceleration = 1.0
-drag_coefficient = 0.5
+boost_acceleration = 15.0
+forward_acceleration = 3.0
+drag_coefficient = 0.75
 turn_speed = 1.0
 smooth_time = 2.0
+roll_smooth_time = 1.0
+max_roll = 30.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_oa0v6")
