@@ -26,7 +26,7 @@ func _physics_process(delta):
 	apply_boost(delta)
 	
 	apply_air_resistance(delta)
-	
+	print(velocity)
 	move_and_slide()
 
 func apply_rotation(delta : float):
