@@ -2,7 +2,10 @@ shader_type canvas_item;
 
 uniform float pixel_scale : hint_range(4.0, 100.0) = 75.0;
 uniform float aspect_ratio = 1.77778;
-uniform float outline_thickness : hint_range(0.001, 0.05) = 0.002;
+//uniform float outline_thickness : hint_range(0.001, 0.05) = 0.002;
+
+uniform float outline_thickness_outer : hint_range(0.0, 0.05) = 0.002;
+uniform float outline_thickness_center : hint_range(0.0, 0.05) = 0.001;
 
 uniform float center_cutoff_radius : hint_range(0.1, 0.8) = 0.2;
 uniform float center_pixel_scale_factor : hint_range(1.0, 8.0) = 2.0;
@@ -98,8 +101,20 @@ void fragment() {
 
 	// Edge outline
 	float dist = distance(uv, center);
+	//float hex_radius = hex_w * 0.5 * 0.98;
+	////float edge = smoothstep(hex_radius - outline_thickness, hex_radius, dist);
+	//float edge = 0.0;
+	//if (dist_from_center >= center_cutoff_radius) {
+		//edge = smoothstep(hex_radius - outline_thickness, hex_radius, dist);
+	//}
+		
+	float thickness = (dist_from_center < center_cutoff_radius) 
+		? outline_thickness_center 
+		: outline_thickness_outer;
+
 	float hex_radius = hex_w * 0.5 * 0.98;
-	float edge = smoothstep(hex_radius - outline_thickness, hex_radius, dist);
+	float edge = smoothstep(hex_radius - thickness, hex_radius, dist);
+
 
 	vec4 tex_color = texture(TEXTURE, fisheye_uv);
 	COLOR = mix(tex_color, vec4(0.0, 0.0, 0.0, 1.0), edge);

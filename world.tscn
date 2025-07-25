@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcj4lgqmnfd70"]
+[gd_scene load_steps=10 format=3 uid="uid://bcj4lgqmnfd70"]
 
 [ext_resource type="MeshLibrary" uid="uid://quedvdinxc2q" path="res://MeshLibraryColor1-collisions.tres" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://b0r37q1nm8yk6" path="res://Camera/fancy_camera_setup.tscn" id="1_tlwt5"]
@@ -21,6 +21,9 @@ tonemap_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_aqk2v"]
 size = Vector3(382.132, 1.51465, 327.188)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_aqk2v"]
+viewport_path = NodePath("SubViewport")
 
 [node name="World" type="Node3D"]
 
@@ -51,6 +54,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.65951, 0)
 
 [node name="FancyCameraSetup" parent="." node_paths=PackedStringArray("attach_camera_to") instance=ExtResource("1_tlwt5")]
 attach_camera_to = NodePath("../Bee")
+
+[node name="TextureRect" parent="FancyCameraSetup" index="0"]
+texture = SubResource("ViewportTexture_aqk2v")
 
 [node name="Flower" parent="." instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.82576, 9.13573, 6.70753)
@@ -84,3 +90,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84599, 8.88026, 6.36291)
 
 [node name="Flower11" parent="." instance=ExtResource("4_aqk2v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9182, 8.92625, 6.69167)
+
+[editable path="FancyCameraSetup"]
