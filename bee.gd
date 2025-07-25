@@ -66,5 +66,11 @@ func die():
 
 
 
-func _on_area_3d_body_entered(body):
+func _on_crash_detector_body_entered(body):
 	die()
+
+
+func _on_flower_detector_area_entered(area):
+	var flower : Node3D = area.get_parent()
+	Global.score += 1
+	flower.queue_free()

@@ -1,9 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://ydmombs4jus8"]
+[gd_scene load_steps=5 format=3 uid="uid://ydmombs4jus8"]
 
 [ext_resource type="Script" uid="uid://dblbge14rfbxn" path="res://bee.gd" id="1_xww1r"]
 [ext_resource type="AudioStream" uid="uid://lt42tg1ko1tl" path="res://Assets/Sounds/bee-flying-loop-42287-smooth-transition1.mp3" id="2_v5qog"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v5qog"]
+size = Vector3(1.1, 1.1, 1.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q8d8k"]
 size = Vector3(1.1, 1.1, 1.1)
 
 [node name="Bee" type="CharacterBody3D"]
@@ -21,9 +24,20 @@ stream = ExtResource("2_v5qog")
 autoplay = true
 parameters/looping = true
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="crash_detector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="crash_detector"]
 shape = SubResource("BoxShape3D_v5qog")
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[node name="flower_detector" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="flower_detector"]
+shape = SubResource("BoxShape3D_q8d8k")
+
+[connection signal="body_entered" from="crash_detector" to="." method="_on_crash_detector_body_entered"]
+[connection signal="area_entered" from="flower_detector" to="." method="_on_flower_detector_area_entered"]
