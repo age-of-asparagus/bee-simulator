@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://dph70e6ykro5s"]
 
-[ext_resource type="Shader" uid="uid://bmn4bpfkvxsmg" path="res://CameraTests/ShaderTests/fish_eye.gdshader" id="1_etffa"]
+[ext_resource type="Shader" uid="uid://bmn4bpfkvxsmg" path="res://Camera/fish_eye.gdshader" id="1_etffa"]
 [ext_resource type="PackedScene" uid="uid://ydmombs4jus8" path="res://bee.tscn" id="2_6d05o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_etffa"]
