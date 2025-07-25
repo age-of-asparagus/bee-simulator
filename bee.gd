@@ -25,7 +25,7 @@ func _physics_process(delta):
 	apply_boost(delta)
 	
 	apply_air_resistance(delta)
-	print(velocity.length())
+	
 	move_and_slide()
 	
 	audio_buzz.pitch_scale = 0.9 + velocity.length()/5
@@ -59,3 +59,12 @@ func get_input_vertical_rotation():
 func get_input_horizontal_rotation():
 	var input_horizontal_rotation = Input.get_axis("Move_right", "Move_left")
 	return input_horizontal_rotation
+
+func die():
+	var level = Global.levels[Global.level]
+	get_tree().change_scene_to_packed(level)
+
+
+
+func _on_area_3d_body_entered(body):
+	die()

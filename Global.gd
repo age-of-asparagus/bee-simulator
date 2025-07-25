@@ -1,3 +1,7 @@
 extends Node
 
-var gravity = 0.1
+var level = 0
+
+var levels : Array = [
+	preload("res://world.tscn")
+	]
