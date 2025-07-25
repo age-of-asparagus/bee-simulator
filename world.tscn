@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bcj4lgqmnfd70"]
 
-[ext_resource type="MeshLibrary" uid="uid://quedvdinxc2q" path="res://MeshLibraryColor1-collisions.tres" id="1_aqk2v"]
+[ext_resource type="MeshLibrary" uid="uid://bgd81q131saso" path="res://MeshLibraryColor1-collisions.tres" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://b0r37q1nm8yk6" path="res://Camera/fancy_camera_setup.tscn" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://ydmombs4jus8" path="res://bee.tscn" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://chd0yi4gyte3j" path="res://flower.tscn" id="4_aqk2v"]

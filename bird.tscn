@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceieqthdaigv0"]
+
+[ext_resource type="Script" uid="uid://cdyapjm37enn6" path="res://bird.gd" id="1_g5k2s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_owhn0"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g5k2s"]
+size = Vector3(10, 100, 10)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_crnqq"]
+height = 10.0
+radius = 1.0
+
+[node name="bird" type="Node3D"]
+script = ExtResource("1_g5k2s")
+
+[node name="bee_killer" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bee_killer"]
+shape = SubResource("BoxShape3D_owhn0")
+
+[node name="bee_detector" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="bee_detector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
+shape = SubResource("BoxShape3D_g5k2s")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="bee_detector"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5, 0)
+shape = SubResource("CylinderShape3D_crnqq")
