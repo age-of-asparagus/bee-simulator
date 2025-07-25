@@ -11,7 +11,7 @@ uniform float far = 100.0;
 
 // Pixelation controls
 uniform float pixel_size_near : hint_range(1.0, 20.0) = 1.0;
-uniform float pixel_size_far : hint_range(1.0, 20.0) = 8.0;
+uniform float pixel_size_far = 8.0;
 uniform float pixel_depth_start : hint_range(0.0, 100.0) = 5.0;
 uniform float pixel_depth_end : hint_range(0.0, 100.0) = 30.0;
 
@@ -62,13 +62,13 @@ void fragment() {
 	//float pixel_scale = mix(1.0, 8.0, clamp((distance - 2.0) / 30.0, 0.0, 1.0));
 
 	// Calculate pixelation level based on distance
-	float pixel_interp = smoothstep(pixel_depth_start, pixel_depth_end, distance);
-	float pixel_scale = mix(pixel_size_near, pixel_size_far, pixel_interp);
+	//float pixel_interp = smoothstep(pixel_depth_start, pixel_depth_end, distance);
+	//float pixel_scale = mix(pixel_size_near, pixel_size_far, pixel_interp);
+//
+	//// Snap UV to coarse pixel grid
+	//vec2 pixelated_uv = floor(distorted_uv * pixel_scale) / pixel_scale;
 
-	// Snap UV to coarse pixel grid
-	vec2 pixelated_uv = floor(distorted_uv * pixel_scale) / pixel_scale;
-
-	vec2 final_uv = pixelated_uv;
+	vec2 final_uv = distorted_uv;
 
 	if (any(lessThan(final_uv, vec2(0.0))) || any(greaterThan(final_uv, vec2(1.0)))) {
 		discard;
