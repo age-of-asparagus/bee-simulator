@@ -1,0 +1,99 @@
+[gd_scene load_steps=4 format=3 uid="uid://djast7sa0hjlo"]
+
+[ext_resource type="Script" uid="uid://btwgxa7p0r3cw" path="res://Menus/main_menu.gd" id="1_at0u2"]
+[ext_resource type="Texture2D" uid="uid://bfxakykrxuv8l" path="res://Assets/background.png" id="1_p3jrs"]
+[ext_resource type="Texture2D" uid="uid://xypw7vvq8hgb" path="res://Assets/bee_low_poly/bee.png" id="2_at0u2"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_at0u2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_p3jrs")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 55
+
+[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 71
+text = "COMPOUND EYE 
+FLIGHT SIMULATOR"
+
+[node name="SubtitleLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 41
+text = "Can you fly with a compound eye?"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 20
+
+[node name="ButtonPlay" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 61
+text = "  PLAY  "
+alignment = 0
+
+[node name="ButtonSettings" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 61
+text = "  SETTINGS"
+alignment = 0
+
+[node name="ButtonCredits" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 61
+text = "  CREDITS"
+alignment = 0
+
+[node name="FooterText" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 41
+text = "Created for Melon Jam 6"
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("2_at0u2")
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]
