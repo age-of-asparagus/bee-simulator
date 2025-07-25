@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=4 uid="uid://chd0yi4gyte3j"]
+[gd_scene load_steps=6 format=4 uid="uid://chd0yi4gyte3j"]
+
+[ext_resource type="PackedScene" uid="uid://desqljf8bma6s" path="res://Flowers/sunflower.tscn" id="1_p547k"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oa668"]
 
@@ -51,7 +53,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.505, 0)
 shape = SubResource("BoxShape3D_oa668")
 
 [node name="Bush_3_A_Color12" type="Node3D" parent="."]
+visible = false
 
 [node name="Bush_3_A_Color1" type="MeshInstance3D" parent="Bush_3_A_Color12"]
 mesh = SubResource("ArrayMesh_yk2s5")
 skeleton = NodePath("")
+
+[node name="Sunflower1_P" parent="." instance=ExtResource("1_p547k")]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
