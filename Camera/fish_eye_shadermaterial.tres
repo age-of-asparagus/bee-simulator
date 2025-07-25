@@ -1,15 +1,9 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bd4puhy8f7dtk"]
 
-[ext_resource type="Shader" uid="uid://bmn4bpfkvxsmg" path="res://Camera/fish_eye.gdshader" id="1_8vjul"]
+[ext_resource type="Shader" uid="uid://bw5sbfs5xmm7v" path="res://Camera/hex.gdshader" id="1_8vjul"]
 
 [resource]
 shader = ExtResource("1_8vjul")
-shader_parameter/distortion_strength = 0.5
-shader_parameter/projection_mode = 1
-shader_parameter/fov_degrees = 180.0
-shader_parameter/near = 0.1
-shader_parameter/far = 1000.0
-shader_parameter/pixel_size_near = 1.0
-shader_parameter/pixel_size_far = 100.0
-shader_parameter/pixel_depth_start = 5.0
-shader_parameter/pixel_depth_end = 34.651
+shader_parameter/pixel_scale = 100.0
+shader_parameter/aspect_ratio = 1.77778
+shader_parameter/outline_thickness = 0.002
