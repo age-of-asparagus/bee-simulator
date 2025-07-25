@@ -6,9 +6,8 @@
 [sub_resource type="ViewportTexture" id="ViewportTexture_aqk2v"]
 viewport_path = NodePath("FancyCameraSetup/SubViewport")
 
-[node name="FancyCameraSetup" type="Node" node_paths=PackedStringArray("attach_camera_to")]
+[node name="FancyCameraSetup" type="Node"]
 script = ExtResource("1_ly1vl")
-attach_camera_to = NodePath("")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = ExtResource("2_ws8gt")
@@ -30,3 +29,5 @@ size = Vector2i(1152, 648)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.90959, 0)
 current = true
 fov = 120.0
+near = 0.001
+far = 100.0
