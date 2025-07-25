@@ -2,15 +2,19 @@ extends CharacterBody3D
 
 @export var forward_acceleration : float
 @export var max_speed : float
+@export var min_speed : float
 @export var drag : float
 @export var turn_speed : float
 @export var smooth_time : float
 
-var vertical_rotation = 0
-var horizontal_rotation = 0
+#@onready var starting_vertical_rotation = rotation
+#@onready var starting_horizontal_rotation = rotation
 
-var target_vertical_rotation = 0
-var target_horizontal_rotation = 0
+@onready var vertical_rotation = rotation.x
+@onready var horizontal_rotation = rotation.y
+
+@onready var target_vertical_rotation = rotation.x
+@onready var target_horizontal_rotation = rotation.y
 
 
 
@@ -32,8 +36,9 @@ func _physics_process(delta):
 		var drag_force = drag * delta
 		if velocity.length() > drag_force:
 			velocity -= velocity.normalized() * drag_force
-		else:
-			velocity = Vector3.ZERO
+	
+	if velocity.length() < min_speed:
+		velocity = -basis.z * min_speed
 	
 	move_and_slide()
 

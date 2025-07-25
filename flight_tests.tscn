@@ -89,7 +89,7 @@ transform = Transform3D(1.91069e-15, -4.37114e-08, -1, -1, -4.37114e-08, 0, -4.3
 size = Vector3(25.7939, 36.8406, 1)
 
 [node name="Bee" parent="." instance=ExtResource("1_ng8dw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.158626, 4.98296, -0.0129799)
+transform = Transform3D(-1, -6.69697e-08, 5.61943e-08, 0, 0.642788, 0.766044, -8.74228e-08, 0.766044, -0.642788, 0.158626, 4.98296, -0.0129799)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Bee"]
 transform = Transform3D(1.91069e-15, 4.37114e-08, -1, 1, -4.37114e-08, 0, -4.37114e-08, -1, -4.37114e-08, 0, 0, 0)
@@ -97,7 +97,7 @@ radius = 0.202
 height = 0.97
 
 [node name="Camera3D" type="Camera3D" parent="Bee"]
-transform = Transform3D(1, 0, 0, 0, 0.990636, 0.136528, 0, -0.136528, 0.990636, 0, 0.574132, 3.25388)
+transform = Transform3D(1, 0, 0, 0, 0.990636, 0.136528, 0, -0.136528, 0.990636, 0, 0, 0)
 fov = 65.6618
 near = 0.015
 

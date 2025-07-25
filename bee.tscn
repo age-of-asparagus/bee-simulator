@@ -8,6 +8,7 @@
 script = ExtResource("1_xww1r")
 forward_acceleration = 7.5
 max_speed = 15.0
+min_speed = 1.0
 drag = 10.0
 turn_speed = 1.0
 smooth_time = 2.0
