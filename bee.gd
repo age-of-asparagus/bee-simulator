@@ -1,4 +1,5 @@
 extends CharacterBody3D
+@onready var audio_buzz: AudioStreamPlayer = $AudioStreamPlayer
 
 @export var boost_acceleration : float
 @export var forward_acceleration : float
@@ -17,8 +18,6 @@ extends CharacterBody3D
 @onready var target_horizontal_rotation = rotation.y
 @onready var target_roll_rotation = rotation.z
 
-
-
 func _physics_process(delta):
 	
 	apply_rotation(delta)
@@ -26,8 +25,11 @@ func _physics_process(delta):
 	apply_boost(delta)
 	
 	apply_air_resistance(delta)
-	print(velocity)
+	print(velocity.length())
 	move_and_slide()
+	
+	audio_buzz.pitch_scale = 0.9 + velocity.length()/5
+
 
 func apply_rotation(delta : float):
 	target_vertical_rotation += get_input_vertical_rotation() * turn_speed * delta

@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://ydmombs4jus8"]
+[gd_scene load_steps=4 format=3 uid="uid://ydmombs4jus8"]
 
 [ext_resource type="Script" uid="uid://dblbge14rfbxn" path="res://bee.gd" id="1_xww1r"]
+[ext_resource type="AudioStream" uid="uid://lt42tg1ko1tl" path="res://Assets/Sounds/bee-flying-loop-42287-smooth-transition1.mp3" id="2_v5qog"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oa0v6"]
 
@@ -16,3 +17,8 @@ max_roll = 30.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_oa0v6")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_v5qog")
+autoplay = true
+parameters/looping = true
