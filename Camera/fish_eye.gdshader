@@ -1,10 +1,29 @@
 shader_type canvas_item;
 
+uniform sampler2D depth_texture;  // need depth for the pixellation
+
 uniform float distortion_strength : hint_range(0.0, 2.0) = 1.0;
 uniform int projection_mode : hint_enum("None,Stereographic,Equidistant,Equisolid") = 1;
 uniform float fov_degrees : hint_range(60.0, 180.0) = 120.0;
 
+uniform float near = 0.1;
+uniform float far = 100.0;
+
+// Pixelation controls
+uniform float pixel_size_near : hint_range(1.0, 20.0) = 1.0;
+uniform float pixel_size_far : hint_range(1.0, 20.0) = 8.0;
+uniform float pixel_depth_start : hint_range(0.0, 100.0) = 5.0;
+uniform float pixel_depth_end : hint_range(0.0, 100.0) = 30.0;
+
+
+float linearize_depth(float z) {
+    return (2.0 * near * far) / (far + near - z * (far - near));
+}
+
 void fragment() {
+
+	// FISHEYE /////////////////
+
 	vec2 uv = UV * 2.0 - 1.0; // [-1,1] centered coords
 	float r = length(uv);
 	float max_r = sqrt(2.0); // max radius in screen space
@@ -29,17 +48,31 @@ void fragment() {
 			r_fisheye = 2.0 * sin(theta / 2.0) * distortion_strength;
 		}
 
-		// Smooth blend to keep center looking normal
-		//float blend = smoothstep(0.2, 0.8, r_norm);
-		//r_fisheye = mix(r, r_fisheye * max_r, blend); // rescale back to screen space
 		distorted_uv = uv * (r_fisheye / r);
 	}
-
 	distorted_uv = (distorted_uv + 1.0) * 0.5;
 
-	if (any(lessThan(distorted_uv, vec2(0.0))) || any(greaterThan(distorted_uv, vec2(1.0)))) {
+	// PIXELATE ////////////////
+
+	// Get scene depth at this UV
+	float z = texture(depth_texture, distorted_uv).r;
+	float distance = linearize_depth(z);
+
+	// Map distance to pixel scale (e.g. near = 1, far = 8)
+	//float pixel_scale = mix(1.0, 8.0, clamp((distance - 2.0) / 30.0, 0.0, 1.0));
+
+	// Calculate pixelation level based on distance
+	float pixel_interp = smoothstep(pixel_depth_start, pixel_depth_end, distance);
+	float pixel_scale = mix(pixel_size_near, pixel_size_far, pixel_interp);
+
+	// Snap UV to coarse pixel grid
+	vec2 pixelated_uv = floor(distorted_uv * pixel_scale) / pixel_scale;
+
+	vec2 final_uv = pixelated_uv;
+
+	if (any(lessThan(final_uv, vec2(0.0))) || any(greaterThan(final_uv, vec2(1.0)))) {
 		discard;
 	}
 
-	COLOR = texture(TEXTURE, distorted_uv);
+	COLOR = texture(TEXTURE, final_uv);
 }
