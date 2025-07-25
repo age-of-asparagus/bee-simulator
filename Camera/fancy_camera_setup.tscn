@@ -1,10 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0r37q1nm8yk6"]
+[gd_scene load_steps=3 format=3 uid="uid://b0r37q1nm8yk6"]
 
 [ext_resource type="Script" uid="uid://ck6o72amxwkih" path="res://Camera/fancy_camera_setup.gd" id="1_ly1vl"]
 [ext_resource type="Material" uid="uid://bd4puhy8f7dtk" path="res://Camera/fish_eye_shadermaterial.tres" id="2_ws8gt"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_aqk2v"]
-viewport_path = NodePath("FancyCameraSetup/SubViewport")
 
 [node name="FancyCameraSetup" type="Node"]
 script = ExtResource("1_ly1vl")
@@ -18,7 +15,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = SubResource("ViewportTexture_aqk2v")
 expand_mode = 3
 stretch_mode = 5
 
