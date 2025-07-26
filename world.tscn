@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://bcj4lgqmnfd70"]
 
-[ext_resource type="MeshLibrary" uid="uid://cpx0swd71pisi" path="res://MeshLibraryColor1-collisionsv2.tres" id="1_dwbse"]
+[ext_resource type="MeshLibrary" uid="uid://dij31imisfj3k" path="res://MeshLibraryColor1-collisionsv2.tres" id="1_dwbse"]
 [ext_resource type="PackedScene" uid="uid://b0r37q1nm8yk6" path="res://Camera/fancy_camera_setup.tscn" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://ydmombs4jus8" path="res://bee.tscn" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://chd0yi4gyte3j" path="res://flower.tscn" id="4_aqk2v"]
@@ -98,7 +98,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8901, 8.92625, 2.70121)
 [node name="Hive" parent="." instance=ExtResource("6_dwbse")]
 transform = Transform3D(1.30684, 0, 1.51399, 0, 2, 0, -1.51399, 0, 1.30684, -12.1935, 20.3369, -8.95777)
 
-[node name="bird" parent="." instance=ExtResource("7_pkg7o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 0)
+[node name="Birds" type="Node3D" parent="."]
+
+[node name="bird" parent="Birds" instance=ExtResource("7_pkg7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.47526, 30, 31.6121)
+circling_radius = 20
+movement_speed = 30
+
+[node name="bird2" parent="Birds" instance=ExtResource("7_pkg7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9754, 29.4875, -7.53865)
+circling_radius = 15
+
+[node name="bird3" parent="Birds" instance=ExtResource("7_pkg7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6522, 31.7418, -4.94622)
+circling_radius = 30
+movement_speed = 20
+
+[node name="bird4" parent="Birds" instance=ExtResource("7_pkg7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71297, 20, 2.13726)
+circling_radius = 25
+
+[node name="bird5" parent="Birds" instance=ExtResource("7_pkg7o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.980665, 45, 14.3609)
+circling_radius = 15
+movement_speed = 13
 
 [editable path="FancyCameraSetup"]

@@ -11,14 +11,14 @@ var test = preload("res://bird_flight_debugger.tscn")
 
 var rng = RandomNumberGenerator.new()
 
-@onready var starting_position = Vector3(0, 30 , 0)
+@onready var starting_position = global_position
 
 var previous_circling_point : Vector3
 @onready var circling_point = global_position
 
-var circling_radius = 5
+@export var circling_radius = 5
 var circling_speed = 2
-var movement_speed = 10
+@export var movement_speed = 10
 var facing_angle
 var angle : float = 0.0
 var angle_direction = 1
@@ -42,6 +42,7 @@ enum STATE {
 var current_state = STATE.LEAVING_ORBIT
 
 func _ready():
+	circling_speed = movement_speed/circling_radius
 	pick_new_circling_point()
 	rng.randomize()
 	
@@ -89,7 +90,7 @@ func move_naturally(delta):
 			direction = (Vector3(next_xz_position.x, starting_position.y, next_xz_position.y) - global_position).normalized()
 			global_position = Vector3(next_xz_position.x, starting_position.y, next_xz_position.y)
 			
-			max_tilt = deg_to_rad(30)
+			max_tilt = deg_to_rad(90/(circling_radius/5))
 			
 		STATE.LEAVING_ORBIT:
 			animation_player.play("gliding")
@@ -100,7 +101,7 @@ func move_naturally(delta):
 			direction = (Vector3(next_xz_position.x, starting_position.y, next_xz_position.y) - global_position).normalized()
 			global_position = Vector3(next_xz_position.x, starting_position.y, next_xz_position.y)
 			
-			max_tilt = deg_to_rad(30)
+			max_tilt = deg_to_rad(90/(circling_radius/5))
 			
 			if get_tangent_line_target(delta) != target_position:
 				current_state = STATE.ENTERING_ORBIT
@@ -147,7 +148,7 @@ func bee_detected():
 
 func pick_new_circling_point():
 	previous_circling_point = circling_point
-	circling_point = Vector3(starting_position.x + rng.randf_range(-20,20), starting_position.y, starting_position.z + rng.randf_range(-20,20))
+	circling_point = Vector3(starting_position.x + rng.randf_range(-50,50), starting_position.y, starting_position.z + rng.randf_range(-50,50))
 	current_state = STATE.LEAVING_ORBIT
 
 
