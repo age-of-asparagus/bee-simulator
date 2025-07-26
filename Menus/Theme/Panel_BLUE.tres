@@ -1,0 +1,14 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dnnx62g4uqkau"]
+
+[ext_resource type="Texture2D" uid="uid://bsi6kq482poog" path="res://Assets/kenney_ui-pack-adventure/PNG/Double/panel_grey_bolts_blue.png" id="1_qs07m"]
+
+[resource]
+content_margin_left = 50.0
+content_margin_top = 50.0
+content_margin_right = 50.0
+content_margin_bottom = 50.0
+texture = ExtResource("1_qs07m")
+texture_margin_left = 35.0
+texture_margin_top = 35.0
+texture_margin_right = 35.0
+texture_margin_bottom = 35.0

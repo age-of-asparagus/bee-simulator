@@ -1,10 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt1faqtlb82p8"]
+[gd_scene load_steps=4 format=3 uid="uid://bt1faqtlb82p8"]
 
 [ext_resource type="Script" uid="uid://eun22o8lgu3k" path="res://Menus/settings_menu.gd" id="1_isvg7"]
 [ext_resource type="Texture2D" uid="uid://bfxakykrxuv8l" path="res://Assets/background.png" id="2_io7n2"]
-[ext_resource type="Script" uid="uid://bbv26aiafn5sx" path="res://Menus/button_load_scene.gd" id="3_3olhq"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_evfbw"]
+[ext_resource type="PackedScene" uid="uid://c33cnflued084" path="res://Menus/button_load_scene.tscn" id="3_isvg7"]
 
 [node name="SettingsMenu" type="Control"]
 layout_mode = 3
@@ -66,25 +64,14 @@ layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/separation = 20
 
-[node name="ButtonMain2" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
+[node name="ButtonMain3" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_isvg7")]
 layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 61
-text = "  PLAY AGAIN "
-icon = SubResource("ViewportTexture_evfbw")
-alignment = 0
-script = ExtResource("3_3olhq")
-scene_path = "uid://bcj4lgqmnfd70"
-
-[node name="ButtonMain" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 61
-text = "  MAIN MENU  "
-icon = SubResource("ViewportTexture_evfbw")
-alignment = 0
-script = ExtResource("3_3olhq")
+text = "MAIN MENU"
 scene_path = "uid://djast7sa0hjlo"
+
+[node name="ButtonPlay2" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("3_isvg7")]
+layout_mode = 2
+text = "PLAY  "
 
 [node name="FooterText" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -106,6 +93,3 @@ theme_override_font_sizes/font_size = 71
 text = "GAME OVER "
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/ButtonMain2" to="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/ButtonMain2" method="_on_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/ButtonMain" to="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer/ButtonMain" method="_on_button_pressed"]

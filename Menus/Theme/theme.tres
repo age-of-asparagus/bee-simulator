@@ -1,0 +1,32 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://ct5b5xe475rle"]
+
+[ext_resource type="StyleBox" uid="uid://b6drkp1gxfgkw" path="res://Menus/Theme/Box_DARK.tres" id="1_plbbc"]
+[ext_resource type="StyleBox" uid="uid://b7rsip6dw4dpr" path="res://Menus/Theme/Box_LIGHT.tres" id="2_ki4xg"]
+[ext_resource type="StyleBox" uid="uid://dnnx62g4uqkau" path="res://Menus/Theme/Panel_BLUE.tres" id="4_ki4xg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_plbbc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ki4xg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ogl3f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j7b7j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tkeji"]
+
+[resource]
+Button/colors/font_color = Color(0.190762, 0.190762, 0.190762, 1)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/font_sizes/font_size = 40
+Button/styles/disabled = null
+Button/styles/focus = ExtResource("2_ki4xg")
+Button/styles/hover = ExtResource("2_ki4xg")
+Button/styles/normal = ExtResource("2_ki4xg")
+Button/styles/pressed = ExtResource("1_plbbc")
+CheckButton/styles/disabled = SubResource("StyleBoxEmpty_plbbc")
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_ki4xg")
+CheckButton/styles/hover = SubResource("StyleBoxEmpty_ogl3f")
+CheckButton/styles/hover_pressed = SubResource("StyleBoxEmpty_j7b7j")
+CheckButton/styles/normal = SubResource("StyleBoxEmpty_tkeji")
+CheckButton/styles/pressed = null
+PanelContainer/styles/panel = ExtResource("4_ki4xg")

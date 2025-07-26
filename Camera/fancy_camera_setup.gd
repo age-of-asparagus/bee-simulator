@@ -14,7 +14,11 @@ func _ready() -> void:
 	texture_rect.texture = sub_viewport.get_texture()
 	camera.fov = field_of_view
 	
+	print("Acute", Global.settings_hex_acute, "Hex", Global.settings_hex_mosaic)
+	
 	texture_rect.material.set_shader_parameter("hex_view", Global.settings_hex_mosaic)
+	if Global.settings_hex_acute:
+		texture_rect.material.set_shader_parameter("hex_inner_radius", 0.2)
 	
 func _process(delta: float) -> void:
 	if attach_camera_to:

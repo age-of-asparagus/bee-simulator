@@ -5,4 +5,4 @@ extends CanvasLayer
 
 func _process(delta: float) -> void:
 	necter_progress_bar.value = Global.necter
-	hive_progress_bar.value = Global.points
+	hive_progress_bar.value = Global.necter

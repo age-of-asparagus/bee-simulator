@@ -65,17 +65,17 @@ theme_override_constants/separation = 20
 
 [node name="ButtonPlay" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_11gta")]
 layout_mode = 2
-scene_path = "uid://bcj4lgqmnfd70"
+text = "PLAY  "
 
 [node name="ButtonSettings" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_11gta")]
 layout_mode = 2
-text = "  SETTINGS
+text = "SETTINGS AND EXPLANATIONS
 "
 scene_path = "uid://bh5e24bmy5pci"
 
 [node name="ButtonCredits" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_11gta")]
 layout_mode = 2
-text = "  CREDITS
+text = "CREDITS
 "
 
 [node name="FooterText" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]

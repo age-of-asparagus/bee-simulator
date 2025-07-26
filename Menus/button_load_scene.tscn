@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://c33cnflued084"]
+[gd_scene load_steps=3 format=3 uid="uid://c33cnflued084"]
 
+[ext_resource type="Theme" uid="uid://ct5b5xe475rle" path="res://Menus/Theme/theme.tres" id="1_ddlv6"]
 [ext_resource type="Script" uid="uid://bbv26aiafn5sx" path="res://Menus/button_load_scene.gd" id="1_rkpqw"]
 
-[node name="ButtonLoadScene" type="Button"]
+[node name="ButtonPlay" type="Button"]
 size_flags_vertical = 4
-theme_override_font_sizes/font_size = 61
+theme = ExtResource("1_ddlv6")
 text = "  PLAY  "
 alignment = 0
 script = ExtResource("1_rkpqw")
+scene_path = "uid://bcj4lgqmnfd70"
 
 [connection signal="pressed" from="." to="." method="_on_button_pressed"]
