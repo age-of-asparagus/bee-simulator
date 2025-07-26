@@ -1,6 +1,6 @@
 [gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://b7rsip6dw4dpr"]
 
-[ext_resource type="Texture2D" uid="uid://c2gl0wrv4ix3p" path="res://Assets/kenney_ui-pack-adventure/PNG/Double/panel_grey.png" id="1_uqjjm"]
+[ext_resource type="Texture2D" uid="uid://c25dhmpj22r0s" path="res://Assets/kenney_ui-pack-adventure/PNG/Double/panel_brown_damaged.png" id="1_uqjjm"]
 
 [resource]
 content_margin_left = 50.0

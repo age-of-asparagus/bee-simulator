@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bfxakykrxuv8l" path="res://Assets/background.png" id="1_p3jrs"]
 [ext_resource type="PackedScene" uid="uid://c33cnflued084" path="res://Menus/button_load_scene.tscn" id="2_11gta"]
 [ext_resource type="Texture2D" uid="uid://xypw7vvq8hgb" path="res://Assets/bee_low_poly/bee.png" id="2_at0u2"]
-[ext_resource type="Theme" uid="uid://ct5b5xe475rle" path="res://Menus/Theme/theme.tres" id="2_cxdly"]
+[ext_resource type="PackedScene" uid="uid://datosexhdbjj2" path="res://Menus/TitlePanel.tscn" id="2_cxdly"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -44,24 +44,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 55
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="TitlePanel" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("2_cxdly")]
 layout_mode = 2
-theme = ExtResource("2_cxdly")
-
-[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/PanelContainer"]
-layout_mode = 2
-theme = ExtResource("2_cxdly")
-theme_override_font_sizes/font_size = 71
-text = "COMPOUND EYE 
-FLIGHT SIMULATOR"
-horizontal_alignment = 1
-
-[node name="SubtitleLabel" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 41
-text = "Can you fly with a compound eye?"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
