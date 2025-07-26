@@ -1,7 +1,7 @@
 extends Node
 
 var level = 0
-var score = 0
+var necter = 0
 
 var settings_hex_mosaic = true
 

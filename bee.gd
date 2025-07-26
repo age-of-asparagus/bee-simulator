@@ -71,6 +71,6 @@ func _on_crash_detector_body_entered(body):
 
 
 func _on_flower_detector_area_entered(area):
-	var flower : Node3D = area.get_parent()
-	Global.score += 1
-	flower.queue_free()
+	var flower : Flower = area.get_parent()
+	flower.used_up()
+	Global.necter += 25

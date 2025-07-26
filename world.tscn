@@ -60,40 +60,44 @@ attach_camera_to = NodePath("../Bee")
 [node name="TextureRect" parent="FancyCameraSetup" index="0"]
 texture = SubResource("ViewportTexture_036b0")
 
+[node name="NinePatchRect" parent="FancyCameraSetup/HUD/MarginContainer/Control" index="1"]
+offset_top = 0.0
+offset_bottom = 235.0
+
 [node name="Node3D" type="Node3D" parent="FancyCameraSetup"]
 
 [node name="Flower" parent="FancyCameraSetup/Node3D" instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.82576, 9.13573, 6.70753)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.82576, 8.84623, 6.70753)
 
 [node name="Flower2" parent="FancyCameraSetup/Node3D" instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.4079, 9.13573, 7.41532)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.01546, 4.37283, -11.8639)
 
 [node name="Flower3" parent="FancyCameraSetup/Node3D" instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1071, 8.99574, 7.25848)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.0302, 8.86212, 7.16232)
 
 [node name="Flower4" parent="FancyCameraSetup/Node3D" instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.27943, 9.43837, 6.51547)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7699, 8.86851, -12.7157)
 
 [node name="Flower5" parent="FancyCameraSetup/Node3D" instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.41503, 8.87117, 3.75603)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.4005, 0.881468, 13.6329)
 
 [node name="Flower6" parent="FancyCameraSetup/Node3D" instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.44284, 8.09816, 1.20898)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.13108, 8.80837, -0.184692)
 
 [node name="Flower7" parent="FancyCameraSetup/Node3D" instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.65988, 8.15273, 3.36175)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.31141, 2.89362, -2.21528)
 
 [node name="Flower8" parent="FancyCameraSetup/Node3D" instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.33543, 9.16218, 5.04061)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.32474, 4.8045, -6.08435)
 
 [node name="Flower9" parent="FancyCameraSetup/Node3D" instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.66336, 8.33461, 4.9485)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.4512, 4.96951, 6.72044)
 
 [node name="Flower10" parent="FancyCameraSetup/Node3D" instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84599, 8.88026, 6.36291)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.62477, 4.87022, -15.8491)
 
 [node name="Flower11" parent="FancyCameraSetup/Node3D" instance=ExtResource("4_aqk2v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9182, 8.92625, 6.69167)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8901, 8.92625, 2.70121)
 
 [node name="Bird" parent="." instance=ExtResource("5_036b0")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 9.8354, 10.0451, 1.6461)

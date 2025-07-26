@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://ydmombs4jus8"]
+[gd_scene load_steps=5 format=3 uid="uid://ydmombs4jus8"]
 
 [ext_resource type="Script" uid="uid://dblbge14rfbxn" path="res://bee.gd" id="1_xww1r"]
 [ext_resource type="PackedScene" uid="uid://dkaqfga0ld3c" path="res://Assets/bee_low_poly/scene.gltf" id="2_q8d8k"]
@@ -7,9 +7,6 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hoj8b"]
 radius = 0.0215587
 height = 0.0897063
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_q8d8k"]
-size = Vector3(1.1, 1.1, 1.1)
 
 [node name="Bee" type="CharacterBody3D"]
 script = ExtResource("1_xww1r")
@@ -30,7 +27,6 @@ autoplay = true
 parameters/looping = true
 
 [node name="crash_detector" type="Area3D" parent="."]
-collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="crash_detector"]
@@ -42,8 +38,9 @@ collision_layer = 0
 collision_mask = 4
 monitorable = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="flower_detector"]
-shape = SubResource("BoxShape3D_q8d8k")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="flower_detector"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, -0.0104322, 0.0284721)
+shape = SubResource("CapsuleShape3D_hoj8b")
 
 [connection signal="body_entered" from="crash_detector" to="." method="_on_crash_detector_body_entered"]
 [connection signal="area_entered" from="flower_detector" to="." method="_on_flower_detector_area_entered"]
