@@ -88,8 +88,8 @@ vec2 hexellate(vec2 uv, float dynamic_pixel_scale) {
 
 
 float get_hex_edge_outline(vec2 uv, vec2 center, float dist_from_center, float hex_w) {
-	float thickness = (dist_from_center < hex_inner_radius) 
-		? hex_inner_outline 
+	float thickness = (dist_from_center < hex_inner_radius)
+		? hex_inner_outline
 		: hex_outer_outline;
 
 	float hex_radius = hex_w * 0.5 * 0.98;
@@ -124,7 +124,7 @@ void fragment() {
 		: hex_pixel_scale;
 
 	// HEX
-	vec2 hex_center_uv = hex_view 
+	vec2 hex_center_uv = hex_view
 		? hexellate(uv, dynamic_pixel_scale)
 		: uv;
 
@@ -135,7 +135,7 @@ void fragment() {
 	if (!is_within_binocular_mask(fisheye_uv)) {
 		discard;
 	}
-	
+
 	// FINAL COLOR
 	vec4 tex_color = texture(TEXTURE, fisheye_uv);
 
