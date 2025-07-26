@@ -16,18 +16,18 @@ var rng = RandomNumberGenerator.new()
 var previous_circling_point : Vector3
 @onready var circling_point = global_position
 
-@export var circling_radius = 5
-var circling_speed = 2
-@export var movement_speed = 10
+@export var circling_radius : float
+var circling_speed : float
+@export var movement_speed = 10.0
 var facing_angle
 var angle : float = 0.0
 var angle_direction = 1
 
 var max_tilt = rad_to_deg(30)
-var target_tilt = 0
+var target_tilt = 0.0
 var tilt_angle = 0.0
-var tilt_speed = 5
-var return_tilt_speed = 3
+var tilt_speed = 5.0
+var return_tilt_speed = 3.0
 
 var direction : Vector3
 var velocity : Vector3
@@ -43,6 +43,7 @@ var current_state = STATE.LEAVING_ORBIT
 
 func _ready():
 	circling_speed = movement_speed/circling_radius
+	print(circling_speed)
 	pick_new_circling_point()
 	rng.randomize()
 	
@@ -93,6 +94,7 @@ func move_naturally(delta):
 			max_tilt = deg_to_rad(90/(circling_radius/5))
 			
 		STATE.LEAVING_ORBIT:
+			
 			animation_player.play("gliding")
 			angle += angle_direction * circling_speed * delta
 			angle = fmod(angle, TAU)
@@ -114,7 +116,7 @@ func move_naturally(delta):
 	target_tilt = float(angle_direction * max_tilt * -1)
 	tilt_angle = lerp(tilt_angle, target_tilt, tilt_speed * delta)
 	bird_model.rotation.z = tilt_angle
-	print(rad_to_deg(tilt_angle))
+
 	
 	
 	

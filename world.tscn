@@ -102,25 +102,24 @@ transform = Transform3D(1.30684, 0, 1.51399, 0, 2, 0, -1.51399, 0, 1.30684, -12.
 
 [node name="bird" parent="Birds" instance=ExtResource("7_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.47526, 30, 31.6121)
-circling_radius = 20
-movement_speed = 30
+circling_radius = 15.0
 
 [node name="bird2" parent="Birds" instance=ExtResource("7_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9754, 29.4875, -7.53865)
-circling_radius = 15
+circling_radius = 40.0
 
 [node name="bird3" parent="Birds" instance=ExtResource("7_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.6522, 31.7418, -4.94622)
-circling_radius = 30
-movement_speed = 20
+circling_radius = 15.0
+movement_speed = 30.0
 
 [node name="bird4" parent="Birds" instance=ExtResource("7_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71297, 20, 2.13726)
-circling_radius = 25
+circling_radius = 20.0
 
 [node name="bird5" parent="Birds" instance=ExtResource("7_pkg7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.980665, 45, 14.3609)
-circling_radius = 15
-movement_speed = 13
+circling_radius = 10.0
+movement_speed = 30.0
 
 [editable path="FancyCameraSetup"]
