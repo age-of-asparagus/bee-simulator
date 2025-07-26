@@ -22,6 +22,8 @@ texture = SubResource("ViewportTexture_ly1vl")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="HUD" type="CanvasLayer" parent="."]
+
 [node name="SubViewport" type="SubViewport" parent="."]
 size = Vector2i(1920, 1080)
 

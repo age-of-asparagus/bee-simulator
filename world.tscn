@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bcj4lgqmnfd70"]
+[gd_scene load_steps=12 format=3 uid="uid://bcj4lgqmnfd70"]
 
 [ext_resource type="MeshLibrary" uid="uid://bgd81q131saso" path="res://MeshLibraryColor1-collisions.tres" id="1_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://b0r37q1nm8yk6" path="res://Camera/fancy_camera_setup.tscn" id="1_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://ydmombs4jus8" path="res://bee.tscn" id="3_tlwt5"]
 [ext_resource type="PackedScene" uid="uid://chd0yi4gyte3j" path="res://flower.tscn" id="4_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://bx43u7g4klx55" path="res://Assets/low_poly_pigeon/scene.gltf" id="5_036b0"]
+[ext_resource type="PackedScene" uid="uid://b5tken6sdwa8u" path="res://hive.tscn" id="6_dwbse"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_fj7yv"]
 sky_top_color = Color(0.0410786, 0.894213, 1, 1)
@@ -96,5 +97,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9182, 8.92625, 6.69167)
 
 [node name="Bird" parent="." instance=ExtResource("5_036b0")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 9.8354, 10.0451, 1.6461)
+
+[node name="Hive" parent="." instance=ExtResource("6_dwbse")]
+transform = Transform3D(1.30684, 0, 1.51399, 0, 2, 0, -1.51399, 0, 1.30684, -12.1935, 20.3369, -8.95777)
 
 [editable path="FancyCameraSetup"]
