@@ -212,11 +212,11 @@ void fragment() {
 		float edge = get_hex_edge_outline(uv, hex_center_uv, dist_from_center, hex_w);
 		color = mix(color, vec4(0.0, 0.0, 0.0, 1.0), edge);
 	}
-	
+
 	if(spectrum_bee) {
 		//color = bee_vision_apply_purple_preserve_luminance(color, 0.5);
 		color = bee_vision_remove_red(color);
 	}
-	
+
 	COLOR = color;
 }

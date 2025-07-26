@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://chd0yi4gyte3j"]
 
-[ext_resource type="Script" uid="uid://2do6fb6bcjdn" path="res://flower.gd" id="1_511j0"]
+[ext_resource type="Script" path="res://flower.gd" id="1_511j0"]
 [ext_resource type="PackedScene" uid="uid://desqljf8bma6s" path="res://Flowers/sunflower.tscn" id="1_p547k"]
 [ext_resource type="PackedScene" uid="uid://7qh2cwlarpe5" path="res://Assets/SunFlowerHighlighted.glb" id="3_r72as"]
 
