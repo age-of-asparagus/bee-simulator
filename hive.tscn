@@ -41,3 +41,7 @@ shape = SubResource("SphereShape3D_enho2")
 [node name="Bee7" parent="Bees" instance=ExtResource("2_1m1dw")]
 
 [node name="Bee8" parent="Bees" instance=ExtResource("2_1m1dw")]
+
+[node name="Bee9" parent="Bees" instance=ExtResource("2_1m1dw")]
+
+[node name="Bee10" parent="Bees" instance=ExtResource("2_1m1dw")]

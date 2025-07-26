@@ -61,10 +61,9 @@ func get_input_horizontal_rotation():
 	return input_horizontal_rotation
 
 func die():
-	var level = Global.levels[Global.level]
-	get_tree().change_scene_to_packed(level)
-
-
+	get_tree().change_scene_to_file("res://Menus/game_over_menu.tscn")
+	#var level = Global.levels[Global.level]
+	#get_tree().change_scene_to_packed(level)
 
 func _on_crash_detector_body_entered(body):
 	die()
