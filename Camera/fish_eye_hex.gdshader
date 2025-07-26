@@ -1,20 +1,23 @@
 shader_type canvas_item;
 
-uniform float pixel_scale : hint_range(4.0, 100.0) = 75.0;
-uniform float aspect_ratio = 1.77778;
-//uniform float outline_thickness : hint_range(0.001, 0.05) = 0.002;
+uniform float hex_pixel_scale : hint_range(4.0, 100.0) = 75.0;
+uniform float hex_aspect_ratio = 1.5;
+uniform float hex_outer_outline: hint_range(0.0, 0.05) = 0.002;
+uniform float hex_inner_outline : hint_range(0.0, 0.05) = 0.001;
 
-uniform float outline_thickness_outer : hint_range(0.0, 0.05) = 0.002;
-uniform float outline_thickness_center : hint_range(0.0, 0.05) = 0.001;
+uniform float hex_inner_radius : hint_range(0.0, 1.0) = 0.0;
+uniform float hex_inner_scale : hint_range(1.0, 8.0) = 2.0;
 
-uniform float center_cutoff_radius : hint_range(0.1, 0.8) = 0.2;
-uniform float center_pixel_scale_factor : hint_range(1.0, 8.0) = 2.0;
 
+// Binocular Mask Settings
+uniform float eye_separation : hint_range(0.0, 2.0) = 1.97; // distance between centers
+uniform float eye_radius : hint_range(0.0, 2.0) = 1.0;     // max radius
+uniform float eye_vertical_scale : hint_range(0.1, 3.0) = 1.2; // controls the vertical stretch (oval)
 
 // Fisheye settings
-uniform float distortion_strength : hint_range(0.0, 2.0) = 0.2;
-uniform int projection_mode : hint_enum("None,Stereographic,Equidistant,Equisolid") = 1;
-uniform float fov_degrees : hint_range(60.0, 180.0) = 180.0;
+uniform float fov_distortion : hint_range(0.0, 2.0) = 0.15;
+uniform int fov_projection_mode : hint_enum("None,Stereographic,Equidistant,Equisolid") = 1;
+uniform float fov_degrees : hint_range(60.0, 360.0) = 180.0;
 
 vec2 fisheye_distort(vec2 uv) {
 	vec2 centered = uv * 2.0 - 1.0;
@@ -26,12 +29,12 @@ vec2 fisheye_distort(vec2 uv) {
 	float theta = r_norm * radians(fov_degrees);
 	float r_fisheye = r;
 
-	if (projection_mode == 1) {
-		r_fisheye = tan(theta / 2.0) * distortion_strength;
-	} else if (projection_mode == 2) {
-		r_fisheye = theta * distortion_strength;
-	} else if (projection_mode == 3) {
-		r_fisheye = 2.0 * sin(theta / 2.0) * distortion_strength;
+	if (fov_projection_mode == 1) {
+		r_fisheye = tan(theta / 2.0) * fov_distortion;
+	} else if (fov_projection_mode == 2) {
+		r_fisheye = theta * fov_distortion;
+	} else if (fov_projection_mode == 3) {
+		r_fisheye = 2.0 * sin(theta / 2.0) * fov_distortion;
 	}
 
 	centered *= r_fisheye / r;
@@ -61,14 +64,14 @@ void fragment() {
 	// Distance from center of screen
 	float dist_from_center = length(uv - vec2(0.5));
 
-	float dynamic_pixel_scale = (dist_from_center < center_cutoff_radius)
-		? pixel_scale * center_pixel_scale_factor
-		: pixel_scale;
+	float dynamic_pixel_scale = (dist_from_center < hex_inner_radius)
+		? hex_pixel_scale * hex_inner_scale
+		: hex_pixel_scale;
 
 
 	// Build hex grid using *screen UV*, so hexes are uniform in size
 	vec2 hex_uv = uv;
-	hex_uv.x *= aspect_ratio;
+	hex_uv.x *= hex_aspect_ratio;
 
 	float hex_w = 1.0 / dynamic_pixel_scale;
 	float hex_h = hex_w * 0.8660254;
@@ -88,18 +91,34 @@ void fragment() {
 		center.y += hex_h * 0.01;
 	}
 
-	center.x /= aspect_ratio;
+	center.x /= hex_aspect_ratio;
 
 	// Now apply fisheye to the center of this hex to fetch texture
 	vec2 fisheye_uv = fisheye_distort(center);
 
-	// Discard if outside the valid fisheye region
-	vec2 offset = fisheye_uv * 2.0 - 1.0;
-	if (length(offset) > 1.0) {
+	// Discard if outside the valid fisheye region, and also binocular mask view thing
+	// Convert to centered coordinates
+	vec2 centered_uv = fisheye_uv * 2.0 - 1.0;
+
+	// Oval shape (scale Y)
+	vec2 left_eye_center = vec2(-eye_separation * 0.5, 0.0);
+	vec2 right_eye_center = vec2(eye_separation * 0.5, 0.0);
+
+	vec2 left_offset = centered_uv - left_eye_center;
+	vec2 right_offset = centered_uv - right_eye_center;
+
+	left_offset.y *= eye_vertical_scale;
+	right_offset.y *= eye_vertical_scale;
+
+	float left_dist = length(left_offset);
+	float right_dist = length(right_offset);
+
+	// Discard if not inside either eye shape
+	if (left_dist > eye_radius && right_dist > eye_radius) {
 	    discard;
 	}
 
-	// Edge outline
+	// Edge outline for hex mosaic view
 	float dist = distance(uv, center);
 	//float hex_radius = hex_w * 0.5 * 0.98;
 	////float edge = smoothstep(hex_radius - outline_thickness, hex_radius, dist);
@@ -108,9 +127,9 @@ void fragment() {
 		//edge = smoothstep(hex_radius - outline_thickness, hex_radius, dist);
 	//}
 		
-	float thickness = (dist_from_center < center_cutoff_radius) 
-		? outline_thickness_center 
-		: outline_thickness_outer;
+	float thickness = (dist_from_center < hex_inner_radius) 
+		? hex_inner_outline 
+		: hex_outer_outline;
 
 	float hex_radius = hex_w * 0.5 * 0.98;
 	float edge = smoothstep(hex_radius - thickness, hex_radius, dist);

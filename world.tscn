@@ -23,7 +23,7 @@ tonemap_mode = 2
 [sub_resource type="BoxShape3D" id="BoxShape3D_aqk2v"]
 size = Vector3(382.132, 1.51465, 327.188)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_aqk2v"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_036b0"]
 viewport_path = NodePath("SubViewport")
 
 [node name="World" type="Node3D"]
@@ -57,7 +57,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 10, 10
 attach_camera_to = NodePath("../Bee")
 
 [node name="TextureRect" parent="FancyCameraSetup" index="0"]
-texture = SubResource("ViewportTexture_aqk2v")
+texture = SubResource("ViewportTexture_036b0")
 
 [node name="Node3D" type="Node3D" parent="FancyCameraSetup"]
 
