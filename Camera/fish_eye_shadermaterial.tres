@@ -11,6 +11,7 @@ shader_parameter/hex_outer_outline = 0.002
 shader_parameter/hex_inner_outline = 0.001
 shader_parameter/hex_inner_radius = 0.0
 shader_parameter/hex_inner_scale = 2.0
+shader_parameter/spectrum_bee = false
 shader_parameter/eye_separation = 1.97
 shader_parameter/eye_radius = 1.0
 shader_parameter/eye_vertical_scale = 1.2

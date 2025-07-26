@@ -60,10 +60,6 @@ attach_camera_to = NodePath("../Bee")
 [node name="TextureRect" parent="FancyCameraSetup" index="0"]
 texture = SubResource("ViewportTexture_036b0")
 
-[node name="NinePatchRect" parent="FancyCameraSetup/HUD/MarginContainer/Control" index="1"]
-offset_top = 0.0
-offset_bottom = 235.0
-
 [node name="Node3D" type="Node3D" parent="FancyCameraSetup"]
 
 [node name="Flower" parent="FancyCameraSetup/Node3D" instance=ExtResource("4_aqk2v")]

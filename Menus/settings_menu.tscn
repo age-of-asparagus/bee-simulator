@@ -123,17 +123,16 @@ layout_mode = 2
 text = "Many insects with compound eyes have an area of ommatidia that are more densly packed together called an \"acute zone\". This gives them about twice the visual resolution in that direction, usually straight ahead."
 autowrap_mode = 3
 
-[node name="AcuteVisionCheckButton2" type="CheckButton" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer2/VBoxContainer"]
+[node name="BeeSpectrumsVisionCheckButton" type="CheckButton" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("4_evfbw")
-disabled = true
 text = "Enable Bee Spectrum"
 
 [node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer2/VBoxContainer"]
 layout_mode = 2
-text = "Bees can't see red, but they CAN see into the ultraviolet spectrum.  Many flowers that would look bright yellow or pink to us, shine brightly in the ultraviolet to help bees find them and can even act as landing strips!  In the game flowers that you havent visited will appear purple, but this setting will change everything you see!"
+text = "Bees can't see red, but they CAN see into the ultraviolet spectrum.  Many flowers that would look bright yellow or pink to us, shine brightly in the ultraviolet to help bees find them and can even act as landing strips!  In the game flowers that you havent visited will appear purple, but this setting will remove all red from everything."
 autowrap_mode = 3
 
 [connection signal="toggled" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer2/VBoxContainer/HexellateVisionCheckButtons" to="." method="_on_hexellate_vision_check_buttons_toggled"]
 [connection signal="toggled" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer2/VBoxContainer/AcuteVisionCheckButton" to="." method="_on_acute_vision_check_button_toggled"]
-[connection signal="toggled" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer2/VBoxContainer/AcuteVisionCheckButton2" to="." method="_on_acute_vision_check_button_toggled"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/PanelContainer/VBoxContainer2/VBoxContainer/BeeSpectrumsVisionCheckButton" to="." method="_on_bee_spectrums_vision_check_button_toggled"]

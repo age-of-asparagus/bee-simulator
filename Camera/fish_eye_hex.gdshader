@@ -10,6 +10,8 @@ uniform float hex_inner_outline : hint_range(0.0, 0.05) = 0.001;
 uniform float hex_inner_radius : hint_range(0.0, 1.0) = 0.0;
 uniform float hex_inner_scale : hint_range(1.0, 8.0) = 2.0;
 
+uniform bool spectrum_bee = false;
+
 
 // Binocular Mask Settings
 uniform float eye_separation : hint_range(0.0, 2.0) = 1.97; // distance between centers
@@ -115,6 +117,71 @@ bool is_within_binocular_mask(vec2 uv) {
 	return (left_dist <= eye_radius || right_dist <= eye_radius);
 }
 
+vec4 bee_vision_remove_red(vec4 uv) {
+	uv.r = 0.0;
+	return uv;
+}
+
+vec4 bee_vision_color_shift1(vec4 tex) {
+	float r = tex.r;
+	float g = tex.g;
+	float b = tex.b;
+	tex.r = b;
+	tex.g = r;
+	tex.b = g;
+	return tex;
+}
+
+vec4 bee_vision_color_shift2(vec4 tex) {
+	float r = tex.r;
+	float g = tex.g;
+	float b = tex.b;
+	tex.r = 0.0;
+	tex.g = r+g;
+	tex.b = r+b;
+	return tex;
+}
+
+vec4 bee_vision_apply_purple_mix(vec4 color, float strength) {
+    vec3 purple = vec3(1.0, 0.0, 1.0); // Pure purple
+    color.rgb = mix(color.rgb, purple, strength);
+    return color;
+}
+
+vec4 bee_vision_apply_purple_add(vec4 color, float strength) {
+    color.r += strength;
+    color.b += strength;
+    color.g *= (1.0 - strength); // reduce green
+    color.rgb = clamp(color.rgb, 0.0, 1.0);
+    return color;
+}
+
+vec4 bee_vision_apply_purple_preserve_luminance(vec4 color, float strength) {
+    float luminance = dot(color.rgb, vec3(0.2126, 0.7152, 0.0722));
+    vec3 purple = normalize(vec3(1.0, 0.0, 1.0)); // normalized purple
+    color.rgb = mix(color.rgb, purple * luminance, strength);
+    return color;
+}
+
+vec4 vee_vision_desaturate_except_blue(vec4 color, float strength) {
+    // Calculate grayscale luminance
+    float gray = dot(color.rgb, vec3(0.2126, 0.7152, 0.0722));
+
+    // How "blue" is this color? (more blue → less desaturation)
+    float blue_ratio = color.b / (color.r + color.g + color.b + 0.001); // avoid div/0
+
+    // You could also use `step` or `smoothstep` to fine-tune
+    float preserve_factor = clamp(blue_ratio * 3.0, 0.0, 1.0); // exaggerate difference
+
+    // Compute how much to desaturate: less if more blue
+    float t = strength * (1.0 - preserve_factor);
+
+    // Blend toward grayscale
+    color.rgb = mix(vec3(gray), color.rgb, 1.0 - t);
+
+    return color;
+}
+
 
 void fragment() {
 	vec2 uv = UV;
@@ -137,15 +204,19 @@ void fragment() {
 	}
 
 	// FINAL COLOR
-	vec4 tex_color = texture(TEXTURE, fisheye_uv);
+	vec4 color = texture(TEXTURE, fisheye_uv);
 
 	// EDGE OUTLINE
 	if(hex_view) {
 		float hex_w = 1.0 / dynamic_pixel_scale;
 		float edge = get_hex_edge_outline(uv, hex_center_uv, dist_from_center, hex_w);
-		COLOR = mix(tex_color, vec4(0.0, 0.0, 0.0, 1.0), edge);
+		color = mix(color, vec4(0.0, 0.0, 0.0, 1.0), edge);
 	}
-	else {
-		COLOR = tex_color;
+	
+	if(spectrum_bee) {
+		//color = bee_vision_apply_purple_preserve_luminance(color, 0.5);
+		color = bee_vision_remove_red(color);
 	}
+	
+	COLOR = color;
 }

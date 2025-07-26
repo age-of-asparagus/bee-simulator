@@ -19,6 +19,8 @@ func _ready() -> void:
 	texture_rect.material.set_shader_parameter("hex_view", Global.settings_hex_mosaic)
 	if Global.settings_hex_acute:
 		texture_rect.material.set_shader_parameter("hex_inner_radius", 0.2)
+		
+	texture_rect.material.set_shader_parameter("spectrum_bee", Global.settings_bee_spectrum )
 	
 func _process(delta: float) -> void:
 	if attach_camera_to:
