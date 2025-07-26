@@ -13,6 +13,8 @@ func _ready() -> void:
 	texture_rect.texture = sub_viewport.get_texture()
 	camera.fov = field_of_view
 	
+	texture_rect.material.set_shader_parameter("hex_view", Global.settings_hex_mosaic)
+	
 func _process(delta: float) -> void:
 	if attach_camera_to:
 		camera.global_position = attach_camera_to.global_position

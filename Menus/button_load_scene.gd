@@ -1,6 +1,7 @@
 extends Button
 
-@export var scene_to_load : PackedScene
+@export_file("tscn") var scene_path: String
 
 func _on_button_pressed() -> void:
-	get_tree().change_scene_to_packed(scene_to_load)
+	print("Loading...", str(scene_path))
+	get_tree().change_scene_to_file(scene_path)

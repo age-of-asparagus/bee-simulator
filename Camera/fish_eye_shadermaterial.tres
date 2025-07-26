@@ -4,7 +4,8 @@
 
 [resource]
 shader = ExtResource("1_8vjul")
-shader_parameter/hex_pixel_scale = 90.0
+shader_parameter/hex_view = true
+shader_parameter/hex_pixel_scale = 75.0
 shader_parameter/hex_aspect_ratio = 1.5
 shader_parameter/hex_outer_outline = 0.002
 shader_parameter/hex_inner_outline = 0.001

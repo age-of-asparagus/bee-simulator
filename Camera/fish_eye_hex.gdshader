@@ -1,5 +1,7 @@
 shader_type canvas_item;
 
+uniform bool hex_view = true;
+
 uniform float hex_pixel_scale : hint_range(4.0, 100.0) = 75.0;
 uniform float hex_aspect_ratio = 1.5;
 uniform float hex_outer_outline: hint_range(0.0, 0.05) = 0.002;
@@ -58,18 +60,7 @@ vec2 hex_round(vec2 q) {
 	return vec2(rx, ry);
 }
 
-void fragment() {
-	vec2 uv = UV;
-
-	// Distance from center of screen
-	float dist_from_center = length(uv - vec2(0.5));
-
-	float dynamic_pixel_scale = (dist_from_center < hex_inner_radius)
-		? hex_pixel_scale * hex_inner_scale
-		: hex_pixel_scale;
-
-
-	// Build hex grid using *screen UV*, so hexes are uniform in size
+vec2 hexellate(vec2 uv, float dynamic_pixel_scale) {
 	vec2 hex_uv = uv;
 	hex_uv.x *= hex_aspect_ratio;
 
@@ -92,15 +83,23 @@ void fragment() {
 	}
 
 	center.x /= hex_aspect_ratio;
+	return center;
+}
 
-	// Now apply fisheye to the center of this hex to fetch texture
-	vec2 fisheye_uv = fisheye_distort(center);
 
-	// Discard if outside the valid fisheye region, and also binocular mask view thing
-	// Convert to centered coordinates
-	vec2 centered_uv = fisheye_uv * 2.0 - 1.0;
+float get_hex_edge_outline(vec2 uv, vec2 center, float dist_from_center, float hex_w) {
+	float thickness = (dist_from_center < hex_inner_radius) 
+		? hex_inner_outline 
+		: hex_outer_outline;
 
-	// Oval shape (scale Y)
+	float hex_radius = hex_w * 0.5 * 0.98;
+	float dist = distance(uv, center);
+	return smoothstep(hex_radius - thickness, hex_radius, dist);
+}
+
+bool is_within_binocular_mask(vec2 uv) {
+	vec2 centered_uv = uv * 2.0 - 1.0;
+
 	vec2 left_eye_center = vec2(-eye_separation * 0.5, 0.0);
 	vec2 right_eye_center = vec2(eye_separation * 0.5, 0.0);
 
@@ -113,29 +112,40 @@ void fragment() {
 	float left_dist = length(left_offset);
 	float right_dist = length(right_offset);
 
-	// Discard if not inside either eye shape
-	if (left_dist > eye_radius && right_dist > eye_radius) {
-	    discard;
-	}
-
-	// Edge outline for hex mosaic view
-	float dist = distance(uv, center);
-	//float hex_radius = hex_w * 0.5 * 0.98;
-	////float edge = smoothstep(hex_radius - outline_thickness, hex_radius, dist);
-	//float edge = 0.0;
-	//if (dist_from_center >= center_cutoff_radius) {
-		//edge = smoothstep(hex_radius - outline_thickness, hex_radius, dist);
-	//}
-		
-	float thickness = (dist_from_center < hex_inner_radius) 
-		? hex_inner_outline 
-		: hex_outer_outline;
-
-	float hex_radius = hex_w * 0.5 * 0.98;
-	float edge = smoothstep(hex_radius - thickness, hex_radius, dist);
-
-
-	vec4 tex_color = texture(TEXTURE, fisheye_uv);
-	COLOR = mix(tex_color, vec4(0.0, 0.0, 0.0, 1.0), edge);
+	return (left_dist <= eye_radius || right_dist <= eye_radius);
 }
 
+
+void fragment() {
+	vec2 uv = UV;
+	float dist_from_center = length(uv - vec2(0.5));
+	float dynamic_pixel_scale = (dist_from_center < hex_inner_radius)
+		? hex_pixel_scale * hex_inner_scale
+		: hex_pixel_scale;
+
+	// HEX
+	vec2 hex_center_uv = hex_view 
+		? hexellate(uv, dynamic_pixel_scale)
+		: uv;
+
+	// FISHEYE
+	vec2 fisheye_uv = fisheye_distort(hex_center_uv);
+
+	// BINOCULAR MASK
+	if (!is_within_binocular_mask(fisheye_uv)) {
+		discard;
+	}
+	
+	// FINAL COLOR
+	vec4 tex_color = texture(TEXTURE, fisheye_uv);
+
+	// EDGE OUTLINE
+	if(hex_view) {
+		float hex_w = 1.0 / dynamic_pixel_scale;
+		float edge = get_hex_edge_outline(uv, hex_center_uv, dist_from_center, hex_w);
+		COLOR = mix(tex_color, vec4(0.0, 0.0, 0.0, 1.0), edge);
+	}
+	else {
+		COLOR = tex_color;
+	}
+}
