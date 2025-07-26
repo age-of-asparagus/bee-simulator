@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://by7p1fubqgkp4"]
+
+[ext_resource type="Script" uid="uid://kmb153lnsrxe" path="res://drone_bee.gd" id="1_j1yr0"]
+[ext_resource type="PackedScene" uid="uid://dkaqfga0ld3c" path="res://Assets/bee_low_poly/scene.gltf" id="2_bwh84"]
+
+[node name="Bee" type="Node3D"]
+script = ExtResource("1_j1yr0")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("2_bwh84")]
+transform = Transform3D(1.19249e-10, 0, -0.01, 0, 0.01, 0, 0.01, 0, 1.19249e-10, 0.00642791, -0.0378616, 0.0249427)

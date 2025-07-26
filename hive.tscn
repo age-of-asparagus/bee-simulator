@@ -1,11 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5tken6sdwa8u"]
+[gd_scene load_steps=5 format=3 uid="uid://b5tken6sdwa8u"]
 
 [ext_resource type="PackedScene" uid="uid://8q0sofxygoc4" path="res://Assets/bee_hive/scene.gltf" id="1_emd1k"]
+[ext_resource type="PackedScene" uid="uid://by7p1fubqgkp4" path="res://drone_bee.tscn" id="2_1m1dw"]
+[ext_resource type="AudioStream" uid="uid://samqaxiaavhl" path="res://Assets/Sounds/bee_hive_loop.mp3" id="3_u1ead"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_enho2"]
 radius = 0.27957
 
 [node name="Hive" type="Node3D"]
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_u1ead")
+attenuation_model = 3
+volume_db = 80.0
+autoplay = true
+panning_strength = 3.0
+parameters/looping = true
 
 [node name="Sketchfab_Scene" parent="." instance=ExtResource("1_emd1k")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0809846, -0.134004)
@@ -14,3 +24,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0809846, -0.134004)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("SphereShape3D_enho2")
+
+[node name="Bees" type="Node3D" parent="."]
+
+[node name="Bee" parent="Bees" instance=ExtResource("2_1m1dw")]
+
+[node name="Bee2" parent="Bees" instance=ExtResource("2_1m1dw")]
+
+[node name="Bee3" parent="Bees" instance=ExtResource("2_1m1dw")]
+
+[node name="Bee4" parent="Bees" instance=ExtResource("2_1m1dw")]
+
+[node name="Bee5" parent="Bees" instance=ExtResource("2_1m1dw")]
+
+[node name="Bee6" parent="Bees" instance=ExtResource("2_1m1dw")]
+
+[node name="Bee7" parent="Bees" instance=ExtResource("2_1m1dw")]
+
+[node name="Bee8" parent="Bees" instance=ExtResource("2_1m1dw")]
