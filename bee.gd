@@ -70,12 +70,15 @@ func _on_crash_detector_body_entered(body):
 
 
 func _on_flower_detector_area_entered(area):
-	var flower : Flower = area.get_parent()
-	flower.used_up()
-	Global.necter += 25
+	if Global.necter < Global.necter_max:
+		var flower : Flower = area.get_parent()
+		flower.used_up()
+		Global.necter += 25
 
 
 func _on_hive_detector_area_entered(area: Area3D) -> void:
-	print("HIVE DELIVERY!")
 	Global.points += Global.necter
 	Global.necter = 0
+	
+	if Global.points >= Global.points_max:
+		get_tree().change_scene_to_file("res://Menus/win_menu.tscn")
