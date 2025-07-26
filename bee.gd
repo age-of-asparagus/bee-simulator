@@ -73,3 +73,9 @@ func _on_flower_detector_area_entered(area):
 	var flower : Flower = area.get_parent()
 	flower.used_up()
 	Global.necter += 25
+
+
+func _on_hive_detector_area_entered(area: Area3D) -> void:
+	print("HIVE DELIVERY!")
+	Global.points += Global.necter
+	Global.necter = 0

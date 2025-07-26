@@ -6,7 +6,6 @@ extends Node
 @onready var camera: Camera3D = $SubViewport/Camera3D
 @onready var sub_viewport: SubViewport = $SubViewport
 @onready var texture_rect: TextureRect = $TextureRect
-@export var nector_progress: TextureProgressBar
 
 func _ready() -> void:
 	#var viewport_texture := ViewportTexture.new()
@@ -21,5 +20,4 @@ func _process(delta: float) -> void:
 	if attach_camera_to:
 		camera.global_position = attach_camera_to.global_position
 		camera.global_basis = attach_camera_to.global_basis
-	nector_progress.value = Global.necter
 	
