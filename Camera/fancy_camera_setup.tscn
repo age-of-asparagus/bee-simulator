@@ -169,6 +169,8 @@ texture_under = ExtResource("4_njbk7")
 texture_progress = ExtResource("5_nnyqd")
 
 [node name="SubViewport" type="SubViewport" parent="."]
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
 size = Vector2i(1920, 1080)
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport"]
