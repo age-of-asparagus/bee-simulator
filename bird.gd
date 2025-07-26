@@ -10,7 +10,6 @@ var test = preload("res://bird_flight_debugger.tscn")
 @export var attack_speed : float
 
 var rng = RandomNumberGenerator.new()
-var is_orbiting = false
 
 @onready var starting_position = Vector3(0, 30 , 0)
 
@@ -18,15 +17,21 @@ var previous_circling_point : Vector3
 @onready var circling_point = global_position
 
 var circling_radius = 5
-
 var circling_speed = 2
-
 var movement_speed = 10
+var facing_angle
 var angle : float = 0.0
 var angle_direction = 1
+
+var max_tilt = rad_to_deg(30)
+var target_tilt = 0
+var tilt_angle = 0.0
+var tilt_speed = 5
+var return_tilt_speed = 3
+
+var direction : Vector3
 var velocity : Vector3
 var target_position : Vector3
-var direction_to_target : Vector3
 
 enum STATE {
 	ENTERING_ORBIT,
@@ -42,10 +47,9 @@ func _ready():
 	
 
 func _physics_process(delta):
-	print(rad_to_deg(angle))
-	var TEST = test.instantiate()
-	get_parent().add_child(TEST)
-	TEST.global_position = global_position
+	#var TEST = test.instantiate()
+	#get_parent().add_child(TEST)
+	#TEST.global_position = global_position
 	
 	
 	if bee_detected():
@@ -63,37 +67,60 @@ func move_naturally(delta):
 	match current_state:
 		
 		STATE.ENTERING_ORBIT:
-			var TEST = test.instantiate()
-			get_parent().add_child(TEST)
-			TEST.global_position = target_position
-			direction_to_target = (target_position - global_position).normalized()
+			animation_player.play("flapping")
+			var direction_to_target = (target_position - global_position).normalized()
 			velocity = direction_to_target * movement_speed * delta
+			direction = direction_to_target
 			global_position += velocity
+			bird_model.basis = Basis(Vector3.UP, facing_angle)
+			
+			max_tilt = 0
+			
 			if global_position.distance_to(target_position) < movement_speed * delta:
 				global_position = target_position
 				point_picker.start(rng.randf_range(5,15))
 				current_state = STATE.ORBITING
 		
 		STATE.ORBITING:
-			
+			animation_player.play("gliding")
 			angle += angle_direction * circling_speed * delta
 			angle = fmod(angle, TAU)
 			var next_xz_position = Vector2(circling_point.x +sin(angle) * circling_radius, circling_point.z +cos(angle) * circling_radius)
+			direction = (Vector3(next_xz_position.x, starting_position.y, next_xz_position.y) - global_position).normalized()
 			global_position = Vector3(next_xz_position.x, starting_position.y, next_xz_position.y)
 			
+			max_tilt = deg_to_rad(30)
+			
 		STATE.LEAVING_ORBIT:
+			animation_player.play("gliding")
 			angle += angle_direction * circling_speed * delta
 			angle = fmod(angle, TAU)
 			
 			var next_xz_position = Vector2(previous_circling_point.x +sin(angle) * circling_radius, previous_circling_point.z +cos(angle) * circling_radius)
-			var direction = (Vector3(next_xz_position.x, starting_position.y, next_xz_position.y) - global_position).normalized()
+			direction = (Vector3(next_xz_position.x, starting_position.y, next_xz_position.y) - global_position).normalized()
 			global_position = Vector3(next_xz_position.x, starting_position.y, next_xz_position.y)
 			
-			if get_tangent_line_target(delta , direction) != target_position:
+			max_tilt = deg_to_rad(30)
+			
+			if get_tangent_line_target(delta) != target_position:
 				current_state = STATE.ENTERING_ORBIT
-				target_position = get_tangent_line_target(delta, direction, true)
+				target_position = get_tangent_line_target(delta, true)
+	
+	
+	facing_angle = atan2(direction.x, direction.z)
+	bird_model.basis = Basis(Vector3.UP, facing_angle)
+	
+	target_tilt = float(angle_direction * max_tilt * -1)
+	tilt_angle = lerp(tilt_angle, target_tilt, tilt_speed * delta)
+	bird_model.rotation.z = tilt_angle
+	print(rad_to_deg(tilt_angle))
+	
+	
+	
 
-func get_tangent_line_target(delta , direction, check_angle = false):
+
+
+func get_tangent_line_target(delta , check_angle = false):
 	var tangent_direction_2D = Vector2(global_position.x - previous_circling_point.x, global_position.z- previous_circling_point.z).orthogonal().normalized()
 	var tangent_direction = Vector3(tangent_direction_2D.x, 0, tangent_direction_2D.y)
 	var rel = circling_point - global_position
@@ -121,9 +148,6 @@ func bee_detected():
 func pick_new_circling_point():
 	previous_circling_point = circling_point
 	circling_point = Vector3(starting_position.x + rng.randf_range(-20,20), starting_position.y, starting_position.z + rng.randf_range(-20,20))
-	var TEST = test.instantiate()
-	get_parent().add_child(TEST)
-	TEST.global_position = circling_point
 	current_state = STATE.LEAVING_ORBIT
 
 
