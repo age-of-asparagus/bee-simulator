@@ -2,6 +2,7 @@ extends Node3D
 
 var test = preload("res://bird_flight_debugger.tscn")
 
+@onready var bee_attacker = $bee_attacker
 @onready var point_picker = $point_picker
 @onready var bee_detector = $bee_detector
 @onready var bird_model = $bird_model
@@ -33,17 +34,19 @@ var direction : Vector3
 var velocity : Vector3
 var target_position : Vector3
 
+var bee : Node3D
+
 enum STATE {
 	ENTERING_ORBIT,
 	ORBITING,
-	LEAVING_ORBIT
+	LEAVING_ORBIT,
+	ATTACKING
 }
 
 var current_state = STATE.LEAVING_ORBIT
 
 func _ready():
 	circling_speed = movement_speed/circling_radius
-	print(circling_speed)
 	pick_new_circling_point()
 	rng.randomize()
 	
@@ -54,15 +57,28 @@ func _physics_process(delta):
 	#TEST.global_position = global_position
 	
 	
-	if bee_detected():
+	if bee_detected() or current_state == STATE.ATTACKING:
+		current_state = STATE.ATTACKING
 		attack_bee(delta)
 	else:
 		move_naturally(delta)
 	
 
 func attack_bee(delta):
-	pass
-
+	
+	var bee_direction = (Global.bee_position - global_position).normalized()
+	bee_attacker.target_position = bee_direction * 100000
+	var displacement_to_bee = (Global.bee_position - global_position).length()
+	#var displacement_to_collider = (bee_attacker.get_collider().global_position - global_position).length()
+	
+	if (bee_attacker.get_collider() == null or abs((bee_attacker.get_collider().global_position - Global.bee_position).length()) <= 0.1) and Global.bee_position.y > 5:
+		global_position += bee_direction * attack_speed * delta
+		direction = bee_direction
+		animation_player.play("flapping")
+		facing_angle = atan2(direction.x, direction.z)
+		bird_model.basis = Basis(Vector3.UP, facing_angle)
+	else:
+		current_state = STATE.ENTERING_ORBIT
 
 func move_naturally(delta):
 	
@@ -145,7 +161,7 @@ func get_tangent_line_target(delta , check_angle = false):
 
 
 func bee_detected():
-	var bee_detected = not bee_detector.get_overlapping_bodies().is_empty()
+	var bee_detected = not bee_detector.get_overlapping_areas().is_empty()
 	return bee_detected
 
 func pick_new_circling_point():
@@ -156,3 +172,7 @@ func pick_new_circling_point():
 
 func _on_point_picker_timeout():
 	pick_new_circling_point()
+
+
+func _on_bee_killer_area_entered(area):
+	area.get_parent().die()

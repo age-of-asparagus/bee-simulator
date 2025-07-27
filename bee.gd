@@ -20,6 +20,8 @@ extends CharacterBody3D
 
 func _physics_process(delta):
 	
+	Global.bee_position = global_position
+	
 	apply_rotation(delta)
 	
 	apply_boost(delta)
@@ -61,6 +63,8 @@ func get_input_horizontal_rotation():
 	return input_horizontal_rotation
 
 func die():
+	Global.necter = 0
+	Global.points = 0
 	get_tree().change_scene_to_file("res://Menus/game_over_menu.tscn")
 	#var level = Global.levels[Global.level]
 	#get_tree().change_scene_to_packed(level)
