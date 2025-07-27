@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bh5e24bmy5pci"]
+[gd_scene load_steps=9 format=3 uid="uid://bh5e24bmy5pci"]
 
 [ext_resource type="Texture2D" uid="uid://bfxakykrxuv8l" path="res://Assets/background.png" id="1_evfbw"]
 [ext_resource type="Script" uid="uid://eun22o8lgu3k" path="res://Menus/settings_menu.gd" id="1_kpbbf"]
 [ext_resource type="PackedScene" uid="uid://c33cnflued084" path="res://Menus/button_load_scene.tscn" id="2_kpbbf"]
+[ext_resource type="AudioStream" uid="uid://3soj74ic5lk2" path="res://Assets/Sounds/Kenney/impactWood_light_000.ogg" id="2_macso"]
 [ext_resource type="PackedScene" uid="uid://datosexhdbjj2" path="res://Menus/TitlePanel.tscn" id="3_kpbbf"]
 [ext_resource type="PackedScene" uid="uid://bf33w2cy0n0eo" path="res://Menus/MenuTitle.tscn" id="5_4tigv"]
+[ext_resource type="PackedScene" uid="uid://dvb7sq1wavcrg" path="res://Menus/CreatedPanel.tscn" id="6_04tbk"]
 [ext_resource type="Theme" uid="uid://bvnm8v6xvb2nf" path="res://Menus/Theme/Check.tres" id="7_macso"]
 
 [node name="SettingsMenu2" type="Control"]
@@ -15,6 +17,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kpbbf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_macso")
+pitch_scale = 1.35
 
 [node name="TextureRect" type="TextureRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.501961)
@@ -64,12 +70,8 @@ scene_path = "uid://djast7sa0hjlo"
 layout_mode = 2
 text = "PLAY"
 
-[node name="FooterText" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="PanelContainer2" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("6_04tbk")]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 40
-text = "Created for Melon Jam 6"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2

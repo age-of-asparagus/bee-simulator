@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmw1q1asg0qrw"]
+
+[ext_resource type="Texture2D" uid="uid://dmjl8xn7qrk3s" path="res://Assets/kenney_ui-pack-adventure/PNG/Double/banner_classic_curtain.png" id="1_qcbc4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wsgfg"]
+texture = ExtResource("1_qcbc4")
+texture_margin_left = 118.0
+texture_margin_top = 30.0
+texture_margin_right = 118.0
+texture_margin_bottom = 51.0
+
+[node name="PanelContainer" type="PanelContainer"]
+theme_override_styles/panel = SubResource("StyleBoxTexture_wsgfg")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 0.945098, 0.823529, 1)
+theme_override_font_sizes/font_size = 70
+text = "YOU WON!"
+horizontal_alignment = 1
+vertical_alignment = 1

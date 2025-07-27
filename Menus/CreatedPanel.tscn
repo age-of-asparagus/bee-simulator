@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvb7sq1wavcrg"]
+
+[ext_resource type="Theme" uid="uid://ct5b5xe475rle" path="res://Menus/Theme/theme.tres" id="1_qvw73"]
+
+[node name="PanelContainer" type="PanelContainer"]
+theme = ExtResource("1_qvw73")
+
+[node name="FooterText" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Created by H0K9 and AgeOfAsparagus for Melon Jam 6."

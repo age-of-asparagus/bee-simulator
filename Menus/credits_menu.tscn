@@ -1,0 +1,129 @@
+[gd_scene load_steps=9 format=3 uid="uid://vphrmlsrkkow"]
+
+[ext_resource type="Script" uid="uid://bqwpkvgvgctsc" path="res://Menus/credits_menu.gd" id="1_vmgae"]
+[ext_resource type="AudioStream" uid="uid://3soj74ic5lk2" path="res://Assets/Sounds/Kenney/impactWood_light_000.ogg" id="2_a84my"]
+[ext_resource type="Texture2D" uid="uid://bfxakykrxuv8l" path="res://Assets/background.png" id="3_c1o7t"]
+[ext_resource type="PackedScene" uid="uid://datosexhdbjj2" path="res://Menus/TitlePanel.tscn" id="4_r7s2c"]
+[ext_resource type="PackedScene" uid="uid://c33cnflued084" path="res://Menus/button_load_scene.tscn" id="5_mg76e"]
+[ext_resource type="PackedScene" uid="uid://dvb7sq1wavcrg" path="res://Menus/CreatedPanel.tscn" id="6_a84my"]
+[ext_resource type="PackedScene" uid="uid://bf33w2cy0n0eo" path="res://Menus/MenuTitle.tscn" id="6_je1t3"]
+[ext_resource type="Theme" uid="uid://bvnm8v6xvb2nf" path="res://Menus/Theme/Check.tres" id="7_ukk4y"]
+
+[node name="CreditsMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vmgae")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_a84my")
+pitch_scale = 1.35
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.501961)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_c1o7t")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 55
+
+[node name="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_r7s2c")]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_constants/separation = 20
+
+[node name="ButtonMain" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("5_mg76e")]
+layout_mode = 2
+text = "MAIN MENU"
+scene_path = "uid://djast7sa0hjlo"
+
+[node name="ButtonPlay" parent="MarginContainer/HBoxContainer/VBoxContainer/VBoxContainer" instance=ExtResource("5_mg76e")]
+layout_mode = 2
+text = "PLAY"
+
+[node name="PanelContainer2" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("6_a84my")]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 55
+alignment = 1
+
+[node name="MenuTitle" parent="MarginContainer/HBoxContainer/VBoxContainer2" instance=ExtResource("6_je1t3")]
+layout_mode = 2
+
+[node name="TitleLabel" parent="MarginContainer/HBoxContainer/VBoxContainer2/MenuTitle" index="0"]
+text = "CREDITS MENU"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("7_ukk4y")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[b]Inspiration[/b]
+Cupertino Game Dev Club and [url={https://itch.io/jam/melonjam6}]Melon Jam 6[/url], and the theme of course! \"Compound\"
+
+[b]3D Assets[/b]
+ * KayKit Forest Nature Pack ( https://kaylousberg.itch.io/kaykit-forest) by Kay Lousberg (CC0)
+ * \"Sunflower\" (https://skfb.ly/69oAN) by zvanstone (CC0)
+ * \"Bee (Low Poly)\" (https://skfb.ly/o9XvJ) by EsiHere (CC-BY)
+ * \"Bee Hive\" (https://skfb.ly/ouWtO) by ScienceTle (CC-BY)
+
+[b]2D Assets[/b]
+ * UI Pack - Adventure (https://kenney.nl/assets/ui-pack-adventure) by Kenney (CC0)
+
+[b]Sounds[/b]
+ * Bee Flying Loop: https://pixabay.com/sound-effects/bee-flying-loop-42287/
+ * Bee Hive (CC0): https://freesound.org/people/felix.blume/sounds/567548/
+ * Splat (CC0)s: https://freesound.org/people/nebulasnails/sounds/495117/
+
+[b]Research[/b]
+ * Insect Vision Part 4: What do Insects See? (https://youtu.be/2Hs3vAZYsA8?si=k5T9hqmIeZGNjVY0) by Entomology Animated
+ * How Bees See and Why it Matters (https://beeculture.com/bees-see-matters/) by Sharla Riddles
+ * Simulating Bee Vision (https://www.mi.fu-berlin.de/inf/groups/ag-ki/Theses/Completed-theses/Bachelor-theses/2017/Polster/BA-Polster-small.pdf) by Johannes Polster... just kidding! We faked it all as best we could, but I did bookmarks this in case we ever wanted to expand on the game and make it a more accurate simulation!
+
+"
+fit_content = true
+
+[connection signal="meta_clicked" from="MarginContainer/HBoxContainer/VBoxContainer2/PanelContainer/VBoxContainer/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]
+
+[editable path="MarginContainer/HBoxContainer/VBoxContainer2/MenuTitle"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://djast7sa0hjlo"]
+[gd_scene load_steps=6 format=3 uid="uid://djast7sa0hjlo"]
 
 [ext_resource type="Texture2D" uid="uid://bfxakykrxuv8l" path="res://Assets/background.png" id="1_p3jrs"]
 [ext_resource type="PackedScene" uid="uid://c33cnflued084" path="res://Menus/button_load_scene.tscn" id="2_11gta"]
 [ext_resource type="Texture2D" uid="uid://xypw7vvq8hgb" path="res://Assets/bee_low_poly/bee.png" id="2_at0u2"]
 [ext_resource type="PackedScene" uid="uid://datosexhdbjj2" path="res://Menus/TitlePanel.tscn" id="2_cxdly"]
+[ext_resource type="PackedScene" uid="uid://dvb7sq1wavcrg" path="res://Menus/CreatedPanel.tscn" id="4_cxdly"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -66,13 +67,10 @@ scene_path = "uid://bh5e24bmy5pci"
 layout_mode = 2
 text = "CREDITS
 "
+scene_path = "uid://vphrmlsrkkow"
 
-[node name="FooterText" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="PanelContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("4_cxdly")]
 layout_mode = 2
-size_flags_vertical = 0
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 40
-text = "Created for Melon Jam 6"
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
