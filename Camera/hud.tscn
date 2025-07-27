@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://kd30hvhvgyf0"]
+[gd_scene load_steps=11 format=3 uid="uid://kd30hvhvgyf0"]
 
 [ext_resource type="Script" uid="uid://c8yyffl1div1m" path="res://Camera/hud.gd" id="1_gsqqc"]
 [ext_resource type="Texture2D" uid="uid://dxkhiotvigokm" path="res://Assets/kenney_ui-pack-adventure/PNG/Double/panel_grey_bolts_detail_a.png" id="2_a8s7n"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b7cv85xcopgvv" path="res://Assets/kenney_ui-pack-adventure/PNG/Double/minimap_ring_grey_detail.png" id="4_xtu8s"]
 [ext_resource type="Texture2D" uid="uid://3xns6cvbqma7" path="res://Assets/kenney_ui-pack-adventure/PNG/Default/minimap_compass_future_n.png" id="5_tfapf"]
 [ext_resource type="Texture2D" uid="uid://c8aj3ijwslk1t" path="res://Assets/kenney_ui-pack-adventure/PNG/Double/progress_transparent.png" id="6_80n8k"]
+[ext_resource type="Texture2D" uid="uid://chgg0uwqex8nj" path="res://Assets/kenney_ui-pack-adventure/PNG/Double/panel_brown_dark_corners_b.png" id="6_xtu8s"]
 [ext_resource type="Texture2D" uid="uid://dxc12ca48r1ar" path="res://Assets/kenney_ui-pack-adventure/PNG/Double/progress_yellow.png" id="7_hjwoo"]
 [ext_resource type="Texture2D" uid="uid://xypw7vvq8hgb" path="res://Assets/bee_low_poly/bee.png" id="8_a8s7n"]
 [ext_resource type="Texture2D" uid="uid://7v6ulfd823rs" path="res://Assets/bee_hive/hive.png" id="9_4em5d"]
@@ -121,7 +122,7 @@ stretch_mode = 5
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
-texture = ExtResource("2_a8s7n")
+texture = ExtResource("6_xtu8s")
 patch_margin_left = 36
 patch_margin_top = 36
 patch_margin_right = 36
@@ -133,6 +134,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 36
@@ -152,8 +154,10 @@ expand_mode = 5
 stretch_mode = 5
 
 [node name="NecterProgressBar" type="TextureProgressBar" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(50, 200)
 layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
 value = 50.0
 fill_mode = 3
 nine_patch_stretch = true
@@ -179,6 +183,7 @@ stretch_mode = 5
 [node name="HiveProgressBar" type="TextureProgressBar" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+size_flags_stretch_ratio = 0.75
 max_value = 400.0
 value = 50.0
 fill_mode = 3

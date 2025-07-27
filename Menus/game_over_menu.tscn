@@ -1,11 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt1faqtlb82p8"]
+[gd_scene load_steps=6 format=3 uid="uid://bt1faqtlb82p8"]
 
 [ext_resource type="Script" uid="uid://eun22o8lgu3k" path="res://Menus/settings_menu.gd" id="1_isvg7"]
 [ext_resource type="Texture2D" uid="uid://bfxakykrxuv8l" path="res://Assets/background.png" id="2_io7n2"]
 [ext_resource type="PackedScene" uid="uid://datosexhdbjj2" path="res://Menus/TitlePanel.tscn" id="3_io7n2"]
 [ext_resource type="PackedScene" uid="uid://c33cnflued084" path="res://Menus/button_load_scene.tscn" id="3_isvg7"]
+[ext_resource type="PackedScene" uid="uid://dmw1q1asg0qrw" path="res://Menus/banner.tscn" id="5_3olhq"]
 
-[node name="SettingsMenu" type="Control"]
+[node name="SettingsMenu2" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,12 +74,10 @@ text = "Created for Melon Jam 6"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="TitleLabel" type="Label" parent="MarginContainer/HBoxContainer/CenterContainer"]
+[node name="PanelContainer" parent="MarginContainer/HBoxContainer/CenterContainer" instance=ExtResource("5_3olhq")]
 layout_mode = 2
-size_flags_horizontal = 2
-size_flags_vertical = 1
-theme_override_constants/outline_size = 20
-theme_override_font_sizes/font_size = 71
-text = "GAME OVER "
-horizontal_alignment = 1
-vertical_alignment = 1
+
+[node name="TitleLabel" parent="MarginContainer/HBoxContainer/CenterContainer/PanelContainer" index="0"]
+text = "YOU DIED!"
+
+[editable path="MarginContainer/HBoxContainer/CenterContainer/PanelContainer"]
