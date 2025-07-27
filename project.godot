@@ -67,6 +67,8 @@ Boost={
 3d_physics/layer_1="Bee"
 3d_physics/layer_2="World"
 3d_physics/layer_3="Flower"
+3d_physics/layer_4="Hive"
+3d_physics/layer_5="Bush"
 
 [rendering]
 
